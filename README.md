@@ -54,4 +54,29 @@ _Compare two HebrewDate:_
 assertEquals(0, HebrewDate.compare(HebrewDate.of(5731, 12, 7), HebrewDate.ofChris(1971, 8, 28)));  
 assertEquals(1, HebrewDate.compare(HebrewDate.of(5731, 12, 8), HebrewDate.ofChris(1971, 8, 28)));  
 
+## Get cycle informations:  
+
+_SummerTime/Daylight Saving Time:_   
+HebrewDate date = HebrewDate.ofChris(2020, 3, 26);  
+assertEquals("בשעון חורף", SummerTime.getInfo(date));  
+date.addDays(1);  
+assertEquals("תחילת שעון קיץ", SummerTime.getInfo(date));  
+date.addDays(1);  
+assertEquals("בשעון קיץ", SummerTime.getInfo(date));  
+date.addDays(211);  
+assertEquals("25/10/2020", date.toCrisString());  
+assertEquals("סוף שעון קיץ", SummerTime.getInfo(date)); 
+
+_Daf yomi:_  
+_This is how you get the information about the Daf yomi_  
+HebrewDate date = HebrewDate.of(5743, 3, 8);  
+int machzor = 8;  
+while (date.getYear() <= 6000)  
+{  
+    assertEquals("מחזור:" + (++machzor) + " - מסכת:נדה דף:עב", new DafYomiBavli().getInfo(date));  
+    date.addDays(2711);  
+}  
+
+
+
 
