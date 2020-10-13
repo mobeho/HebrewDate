@@ -1,0 +1,10 @@
+.idea/
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+HebrewDate.iml
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
