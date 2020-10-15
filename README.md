@@ -21,15 +21,15 @@ HebrewDate date = HebrewDate.of("ז אלול התשלא");
 assertEquals("הכז", date.getYearType().toString());  
 assertEquals("התשלא", date.getYearString());  
 assertEquals(5731, date.getYear());  
-assertEquals(1971, date.getCrisYear());  
+assertEquals(1971, date.getChrisYear());  
 TestCase.assertFalse(date.isLeapYear());  
-TestCase.assertFalse(date.isCrisLeapYear());  
+TestCase.assertFalse(date.isChrisLeapYear());  
 TestCase.assertTrue(date.isGregorianAge());  
 assertEquals(354, date.getNumberDaysInYear());  
 assertEquals(51, date.getNumberOfShabatot());  
-assertEquals(365, date.getCrisNumberDaysInYear());  
+assertEquals(365, date.getChrisNumberDaysInYear());  
 assertEquals(51, date.getNumberOfWeeks());  
-assertEquals(53, date.getCrisNumberOfWeeks());  
+assertEquals(53, date.getChrisNumberOfWeeks());  
   
 assertEquals("שפטים", date.getShabatName());  
 assertEquals("[48, 0]", Arrays.toString(date.getShabatIndexes()));  
@@ -64,7 +64,7 @@ assertEquals("תחילת שעון קיץ", SummerTime.getInfo(date));
 date.addDays(1);  
 assertEquals("בשעון קיץ", SummerTime.getInfo(date));  
 date.addDays(211);  
-assertEquals("25/10/2020", date.toCrisString());  
+assertEquals("25/10/2020", date.toChrisString());  
 assertEquals("סוף שעון קיץ", SummerTime.getInfo(date)); 
 
 _Daf yomi:_  

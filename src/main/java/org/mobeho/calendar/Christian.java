@@ -395,7 +395,7 @@ public class Christian
     {
         return getFebruaryLength() + 4 * 30 + 7 * 31-((this.year==1582)?10:0);
     }
-    public int getCrisNumberOfWeeks()
+    public int getChrisNumberOfWeeks()
     {
         return (getStartYearDayOfYear() + getNumberDaysInYear()) / 7;
     }

@@ -222,7 +222,7 @@ public class HebrewDate
         return this.hebrew.toYearString();
     }
 
-    public int getCrisYear()
+    public int getChrisYear()
     {
         return this.christian.getYear();
     }
@@ -237,7 +237,7 @@ public class HebrewDate
         return this.hebrew.getDaysOfMonthString();
     }
 
-    public String[] getCrisDaysOfMonthString()
+    public String[] getChrisDaysOfMonthString()
     {
         return this.christian.getDaysOfMonthString();
     }
@@ -262,7 +262,7 @@ public class HebrewDate
         return this.hebrew.getMonthsString();
     }
 
-    public int getCrisMonth()
+    public int getChrisMonth()
     {
         return this.christian.getMonth();
     }
@@ -292,7 +292,7 @@ public class HebrewDate
         return this.hebrew.getDayString();
     }
 
-    public int getCrisDay()
+    public int getChrisDay()
     {
         return this.christian.getDay();
     }
@@ -302,12 +302,12 @@ public class HebrewDate
         return this.hebrew.getDayOfWeakString();
     }
 
-    public String getCrisDayOfWeakString()
+    public String getChrisDayOfWeakString()
     {
         return this.christian.getDayOfWeakString();
     }
 
-    public String getCrisDayString()
+    public String getChrisDayString()
     {
         return this.christian.getDayString();
     }
@@ -327,7 +327,7 @@ public class HebrewDate
         return this.hebrew.getNumberDaysInMonth();
     }
 
-    public int getCrisNumberDaysInMonth()
+    public int getChrisNumberDaysInMonth()
     {
         return this.christian.getNumberDaysInMonth();
     }
@@ -337,7 +337,7 @@ public class HebrewDate
         return this.hebrew.getNumberDaysInYear();
     }
 
-    public int getCrisNumberDaysInYear()
+    public int getChrisNumberDaysInYear()
     {
         return this.christian.getDaysInYear();
     }
@@ -357,7 +357,7 @@ public class HebrewDate
         return this.hebrew.getYearType().isLeap();
     }
 
-    public boolean isCrisLeapYear()
+    public boolean isChrisLeapYear()
     {
         return this.christian.isLeapYear();
     }
@@ -377,9 +377,9 @@ public class HebrewDate
         return this.hebrew.getNumberOfWeeks();
     }
 
-    public int getCrisNumberOfWeeks()
+    public int getChrisNumberOfWeeks()
     {
-        return (this.christian.getCrisNumberOfWeeks());
+        return (this.christian.getChrisNumberOfWeeks());
     }
 
     @Override
@@ -398,7 +398,7 @@ public class HebrewDate
         return getDayString() + delimiter + getMonthString() + delimiter + getYearString();
     }
 
-    public String toCrisString()
+    public String toChrisString()
     {
         return this.christian.toString();
     }

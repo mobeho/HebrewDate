@@ -41,30 +41,30 @@ public class CalendarTest
       assertEquals("הכז", date.getYearType().toString());
       assertEquals("התשלא", date.getYearString());
       assertEquals(5731, date.getYear());
-      assertEquals(1971, date.getCrisYear());
+      assertEquals(1971, date.getChrisYear());
       TestCase.assertFalse(date.isLeapYear());
-      TestCase.assertFalse(date.isCrisLeapYear());
+      TestCase.assertFalse(date.isChrisLeapYear());
       TestCase.assertTrue(date.isGregorianAge());
       assertEquals(354, date.getNumberDaysInYear());
       assertEquals(51, date.getNumberOfShabatot());
-      assertEquals(365, date.getCrisNumberDaysInYear());
+      assertEquals(365, date.getChrisNumberDaysInYear());
       assertEquals(51, date.getNumberOfWeeks());
-      assertEquals(53, date.getCrisNumberOfWeeks());
+      assertEquals(53, date.getChrisNumberOfWeeks());
 
       assertEquals("אלול", date.getMonthString());
       assertEquals(12, date.getMonth());
-      assertEquals(8, date.getCrisMonth());
+      assertEquals(8, date.getChrisMonth());
 
       assertEquals("ז", date.getDayString());
       assertEquals(7, date.getDay());
-      assertEquals(28, date.getCrisDay());
+      assertEquals(28, date.getChrisDay());
 
       assertEquals("שפטים", date.getShabatName());
       assertEquals("[48, 0]", Arrays.toString(date.getShabatIndexes()));
 
       assertEquals("", date.getHolidayName());
       assertEquals("יום שבת", date.getDayOfWeakString());
-      assertEquals("Saturday", date.getCrisDayOfWeakString());
+      assertEquals("Saturday", date.getChrisDayOfWeakString());
       assertEquals(353, date.getLastShabatDayInYear());
 
       assertEquals("ז אלול", date.toShortString());
@@ -80,7 +80,7 @@ public class CalendarTest
       assertEquals("[א, ב, ג, ד, ה, ו, ז, ח, ט, י, יא, יב, יג, יד, טו, טז, יז, יח, יט, כ, כא, כב, כג, כד, כה, כו, כז, כח, כט]", Arrays.toString(date.getDaysOfMonthString()));
       assertEquals("[תשרי, חשוון, כסלו, טבת, שבט, אדר, ניסן, אייר, סיוון, תמוז, אב, אלול]", Arrays.toString(date.getMonthsString()));
       assertEquals("[תשרי, חשוון, כסלו, טבת, שבט, אדר-א, אדר-ב, ניסן, אייר, סיוון, תמוז, אב, אלול]", Arrays.toString(HebrewDate.of(5782, 1, 1).getMonthsString()));
-      assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]", Arrays.toString(date.getCrisDaysOfMonthString()));
+      assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]", Arrays.toString(date.getChrisDaysOfMonthString()));
 
       assertEquals("התשלא סימן:הכז, מחזור:12/302, שעת מולד:22:947(16:52), חודשים:12, ימים:354", date.toYearString());
    }
@@ -159,7 +159,7 @@ public class CalendarTest
             System.out.println();
 
          if (hebrew.getDaysFromStart() <= until.getDaysFromStart())
-            System.out.print(String.format("|%2s %2s", hebrew.getDayString(), hebrew.getCrisDayString()));
+            System.out.print(String.format("|%2s %2s", hebrew.getDayString(), hebrew.getChrisDayString()));
          else
             System.out.print(String.format(" %2s %2s", "  ", "  "));
 
@@ -207,7 +207,7 @@ public class CalendarTest
 
       hebrew = HebrewDate.now();
       hebrew.addDays(-1000000000);
-      assertEquals(-3761, hebrew.getCrisYear());
+      assertEquals(-3761, hebrew.getChrisYear());
    }
 
    @Test
@@ -231,37 +231,37 @@ public class CalendarTest
       date.addDays(1);
 
       TestCase.assertTrue(date.isGregorianAge());
-      assertEquals(15, date.getCrisDay());
-      assertEquals(10, date.getCrisMonth());
-      assertEquals(1582, date.getCrisYear());
+      assertEquals(15, date.getChrisDay());
+      assertEquals(10, date.getChrisMonth());
+      assertEquals(1582, date.getChrisYear());
       assertEquals("יט תשרי השמג", date.toString());
-      assertEquals(21, date.getCrisNumberDaysInMonth());
-      assertEquals(355, date.getCrisNumberDaysInYear());
+      assertEquals(21, date.getChrisNumberDaysInMonth());
+      assertEquals(355, date.getChrisNumberDaysInYear());
 
       date = HebrewDate.ofChris(1582 , 10, 4);
       date.addChrisMonths(1);
-      assertEquals("04/11/1582",date.toCrisString());
+      assertEquals("04/11/1582",date.toChrisString());
 
       date = HebrewDate.ofChris(1582 , 10, 5);
       date.addChrisMonths(1);
-      assertEquals("15/11/1582",date.toCrisString());
+      assertEquals("15/11/1582",date.toChrisString());
    }
 
    @Test
    public void BCEToCE()
    {
       HebrewDate date = HebrewDate.ofChris(-1 , 1, 1);
-      assertEquals("01/01/-001", date.toCrisString());
+      assertEquals("01/01/-001", date.toChrisString());
       date.addChrisYears(1);
-      assertEquals("01/01/0001", date.toCrisString());
+      assertEquals("01/01/0001", date.toChrisString());
       assertEquals("טז טבת גתשסא", date.toString());
 
       date = HebrewDate.ofChris(-3761 , 10, 7);
-      assertEquals("07/10/-3761", date.toCrisString());
+      assertEquals("07/10/-3761", date.toChrisString());
       assertEquals("א תשרי א", date.toString());
 
       date = HebrewDate.ofChris(-4000 , 1, 1);
-      assertEquals("07/10/-3761", date.toCrisString());
+      assertEquals("07/10/-3761", date.toChrisString());
       assertEquals("א תשרי א", date.toString());
    }
 }
