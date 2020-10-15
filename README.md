@@ -1,5 +1,5 @@
 # HebrewDate
-This project allows to perform all required action and calculation for Hebrew calendar
+The project allows performing all required calculations for Hebrew calendar
 
 ## Convert  
   
