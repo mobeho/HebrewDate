@@ -5,12 +5,12 @@
 
     <groupId>com.github.mobeho</groupId>
     <artifactId>HebrewDate</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>HebrewDate</name>
     <description>Hebrew Date Calendar</description>
-    <url>https://gitlab.com/mobeho/hebrewdate</url>
+    <url>https://github.com/mobeho/hebrewdate</url>
 
     <licenses>
         <license>
@@ -24,7 +24,7 @@
             <name>Maimon Michael</name>
             <email>maimonmichael@gmail.com</email>
             <organization>Mobeho</organization>
-            <organizationUrl>https://gitlab.com/mobeho/hebrewdate</organizationUrl>
+            <organizationUrl>https://github.com/mobeho/hebrewdate</organizationUrl>
         </developer>
     </developers>
 
