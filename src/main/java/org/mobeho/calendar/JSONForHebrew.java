@@ -10,6 +10,20 @@ public class JSONForHebrew
         return getYears(shana, direction, size, (byte) 0);
     }
 
+    /**
+     * This method retries json that contains list of years with dynamic information for each
+     * The default information will contain the "year" followed by the Christian year, and the "shnan" followed by the Hebrew year
+     * Extra information can be added by the {@code shana}
+     * @param shana The first year in the list
+     * @param direction Subsequent years or previous years
+     * @param size How many years starting from {@code shana}
+     * @param mask Whats information to integrated (bit mask)
+     * 1 - number of Months
+     * 2 - number days in each year
+     * 4 - "siman": the Hebrew type of the year
+     * 8 - pos in the cycle of 19 years
+     * @return json contains list of years with extra information
+     */
     public static String getYears(int shana, boolean direction, int size, byte mask)
     {
         HebrewDate temp = HebrewDate.of(shana, 1, 1);
@@ -88,6 +102,14 @@ public class JSONForHebrew
         return getShabatot(shana, (byte)0);
     }
 
+    /**
+     * This method retries json that contains list of Shabatot for the specified year
+     * @param shana the year required
+     * @param mask Whats information to integrated (bit mask)
+     * 1 - Number days in each year
+     * 2 - The hebrew date of this Shabat
+     * @return json contains list of Shabatot with extra information
+     */
     public static String getShabatot(int shana, byte mask)
     {
         HebrewDate temp = HebrewDate.of(shana, 1,  1);
