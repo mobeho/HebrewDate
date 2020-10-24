@@ -16,8 +16,7 @@ Convert from Hebrew to LocalDate using special month like "אדר א" (using hyp
   
   
 ## Calendar Information 
-There are many methods you can use to get calendar information. Some of them are here:    
-The rest can be found in the [CalendarTest.java](https://github.com/mobeho/HebrewDate/blob/master/src/test/java/org/mobeho/calendar/CalendarTest.java) in method checkInfo() 
+There are many methods you can use to get calendar information. Here few of them:    
 
     HebrewDate date = HebrewDate.of("ז אלול התשלא"); 
      
@@ -41,6 +40,8 @@ The rest can be found in the [CalendarTest.java](https://github.com/mobeho/Hebre
   
     assertEquals("התשלא סימן:הכז, מחזור:12/302, שעת מולד:22:947(16:52), חודשים:12, ימים:354", date.toYearString());  
 
+The rest can be found in the [CalendarTest.java](https://github.com/mobeho/HebrewDate/blob/master/src/test/java/org/mobeho/calendar/CalendarTest.java) in method checkInfo() 
+
 ## Numbers and Comparing   
 By specifying the the Hebrew date you can get it represented by numbers 
   
@@ -48,8 +49,8 @@ By specifying the the Hebrew date you can get it represented by numbers
     assertEquals("[6, 7, 0]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אדר")));  
     assertEquals("[6, 7, 1]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אדר-א")));  
 
-The first number will represnt the  _month_, the 2nd is the _day_ column, and the last is the  _leap_ indicator column.  
-The _leap_ indicate if the Hebrew date you provide is at אדר א or date in אדר in leap year   
+The first number will represent the _month_, the 2nd is the _day_, and the last is the  _leap_ indicator.  
+The _leap_ indicate if the Hebrew date you provide is at אדר א or date in אדר at leap year   
   
 and in the opposite direction   
 
