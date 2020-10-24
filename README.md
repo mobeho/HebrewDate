@@ -49,8 +49,8 @@ By specifying the the Hebrew date you can get it represented by numbers
     assertEquals("[6, 7, 0]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אדר")));  
     assertEquals("[6, 7, 1]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אדר-א")));  
 
-The first number will represent the _month_, the 2nd is the _day_, and the last is the  _leap_ indicator.  
-The _leap_ indicate if the Hebrew date you provide is at אדר א or date in אדר at leap year   
+The first number represents the _month_, the 2nd is the _day_, and the last is the  _leap_ indicator.  
+The _leap_ indicate if the Hebrew date you provide is at month אדר in a leap year   
   
 and in the opposite direction   
 
@@ -95,10 +95,10 @@ This is how you get the information about the Daf-Yomi
 
 ## JSON lists  
 To help you build client side code that build Hebrew calendar   
-You can use the JSONForHebrew class that generate JSON lists that required for that.  
-This lists can integrated in http response in Rest APIs for instance.  
+You can use the **JSONForHebrew** class that generate JSON lists that required for that.  
+This lists can integrated in a http response in Rest APIs for instance.  
 
-The paramters describe in the code of [JSONForHebrew.java](https://github.com/mobeho/HebrewDate/blob/master/src/main/java/org/mobeho/calendar/JSONForHebrew.java)
+The parameters described in the code of [JSONForHebrew.java](https://github.com/mobeho/HebrewDate/blob/master/src/main/java/org/mobeho/calendar/JSONForHebrew.java)
     
         json = JSONForHebrew.getYears(5780, true, 2, (byte) 4);
         assertEquals("{\"list\":[{\"year\":5780,\"shana\":\"התשפ\",\"siman\":\"בשה\"},{\"year\":5781,\"shana\":\"התשפא\",\"siman\":\"זחא\"}]}", json);
