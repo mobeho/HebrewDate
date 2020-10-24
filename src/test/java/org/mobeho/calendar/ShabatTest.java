@@ -712,22 +712,22 @@ public class ShabatTest
    @Test
    public void shabatName()
    {
-      TestCase.assertEquals("בראשית", HebrewDate.getShabatName(new int[]{1, 0}));
-      TestCase.assertEquals("[1, 0]", Arrays.toString(getShabatIndexes("בראשית")));
+      assertEquals("בראשית", HebrewDate.getShabatName(new int[]{1, 0}));
+      assertEquals("[1, 0]", Arrays.toString(HebrewDate.getShabatIndexes("בראשית")));
 
-      TestCase.assertEquals("", HebrewDate.getShabatName(new int[]{1, 2}));
+      assertEquals("", HebrewDate.getShabatName(new int[]{1, 2}));
 
-      TestCase.assertEquals("שפטים", HebrewDate.getShabatName(new int[]{48, 0}));
-      TestCase.assertEquals("[48, 0]", Arrays.toString(getShabatIndexes("שפטים")));
+      assertEquals("שפטים", HebrewDate.getShabatName(new int[]{48, 0}));
+      assertEquals("[48, 0]", Arrays.toString(HebrewDate.getShabatIndexes("שפטים")));
 
-      TestCase.assertEquals("נצבים", HebrewDate.getShabatName(new int[]{51, 0}));
-      TestCase.assertEquals("[51, 0]", Arrays.toString(getShabatIndexes("נצבים")));
+      assertEquals("נצבים", HebrewDate.getShabatName(new int[]{51, 0}));
+      assertEquals("[51, 0]", Arrays.toString(getShabatIndexes("נצבים")));
 
-      TestCase.assertEquals("וילך", HebrewDate.getShabatName(new int[]{52, 0}));
-      TestCase.assertEquals("[52, 0]", Arrays.toString(getShabatIndexes("וילך")));
+      assertEquals("וילך", HebrewDate.getShabatName(new int[]{52, 0}));
+      assertEquals("[52, 0]", Arrays.toString(getShabatIndexes("וילך")));
 
-      TestCase.assertEquals("נצבים וילך", HebrewDate.getShabatName(new int[]{51, 52}));
-      TestCase.assertEquals("[51, 52]", Arrays.toString(getShabatIndexes("נצבים וילך")));
+      assertEquals("נצבים וילך", HebrewDate.getShabatName(new int[]{51, 52}));
+      assertEquals("[51, 52]", Arrays.toString(HebrewDate.getShabatIndexes("נצבים וילך")));
    }
 
    @Test
