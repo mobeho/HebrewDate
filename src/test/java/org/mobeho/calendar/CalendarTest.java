@@ -32,6 +32,13 @@ public class CalendarTest
 
       date = HebrewDate.of("א אדר-א התשפא");
       assertEquals(LocalDate.of(2021, 2, 13), date.getLocalDate());
+
+      LocalDate localDate = LocalDate.of(2020, 11, 17);
+      date = HebrewDate.of(localDate);
+      assertEquals(HebrewDate.of("א כסלו התשפא"), date);
+
+      date = HebrewDate.ofChris(2021, 1, 1);
+      assertEquals(HebrewDate.of("יז טבת התשפא"), date);
    }
 
    @Test

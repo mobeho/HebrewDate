@@ -54,7 +54,7 @@ public class HebrewDate
     {
         HebrewDate me = new HebrewDate(false);
         me.christian.set(year, month, day);
-        me.hebrew.addDays(me.christian.getDaysFromStart());
+        me.hebrew.addDays(me.christian.getDaysFromStart() - me.hebrew.getDaysFromStart());
         return me;
     }
 
@@ -62,7 +62,7 @@ public class HebrewDate
     {
         HebrewDate me = new HebrewDate();
         me.christian.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
-        me.hebrew.addDays(me.christian.getDaysFromStart());
+        me.hebrew.addDays(me.christian.getDaysFromStart() - me.hebrew.getDaysFromStart());
         return me;
     }
 
@@ -145,16 +145,6 @@ public class HebrewDate
     public static String convertDayOfWeek(int day)
     {
         return Hebrew.getDayOfWeekString(day);
-    }
-
-    public static int compare(HebrewDate hebrewDate1, HebrewDate hebrewDate2)
-    {
-        return Hebrew.compare(hebrewDate1.hebrew, hebrewDate2.hebrew);
-    }
-
-    public boolean isToday(String checkThis)
-    {
-        return this.hebrew.isToday(checkThis);
     }
 
     public String getMonthAndDay()
@@ -352,6 +342,11 @@ public class HebrewDate
         return this.hebrew.getYearType();
     }
 
+    public boolean isToday(String checkThis)
+    {
+        return this.hebrew.isToday(checkThis);
+    }
+
     public boolean isLeapYear()
     {
         return this.hebrew.getYearType().isLeap();
@@ -406,6 +401,34 @@ public class HebrewDate
     public int getSfiratHaomer()
     {
         return SfiratHaomer.getInfo(this.hebrew);
+    }
+
+    public static int compare(HebrewDate hebrewDate1, HebrewDate hebrewDate2)
+    {
+        return Hebrew.compare(hebrewDate1.hebrew, hebrewDate2.hebrew);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (obj == this)
+            return true;
+
+        if (!(obj instanceof HebrewDate))
+            return false;
+
+        HebrewDate date = (HebrewDate)obj;
+        return compare(this, date) == 0;
+    }
+
+
+    @Override
+    public int hashCode()
+    {
+        return getYear() ^ getMonth() ^ getDay();
     }
 
     /* Not calculate correctly. Should be fixed and opened
