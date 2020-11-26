@@ -396,14 +396,14 @@ public class Hebrew extends Year
         return MONTH_DAY.values()[day-1].toString() + " " + MONTHS.values()[month-1].toString();
     }
 
-    public void setParasha(int year, int parasha, boolean secondPhase)
+    public void setParasha(int parasha, boolean secondPhase)
     {
         YearType type = getYearType();
 
         // Rest of the year after Rosh Hashana
-        if (secondPhase && (parasha-1) >= (Shabbat.Shabbatot.וילך.ordinal()))
+        if (secondPhase && (parasha >= (Shabbat.Shabbatot.וילך.ordinal() + 1)))
         {
-            if ((parasha-1) == (Shabbat.Shabbatot.האזינו.ordinal()))
+            if (parasha == (Shabbat.Shabbatot.האזינו.ordinal() + 1))
             {
                 set(year+1,1,1);
                 int firstDay = type.getFirstDay();
@@ -418,7 +418,7 @@ public class Hebrew extends Year
                 return;
             }
 
-            else if ((parasha-1) == (Shabbat.Shabbatot.וילך.ordinal()))
+            else if ((parasha == (Shabbat.Shabbatot.וילך.ordinal() + 1)))
             {
                 if (type.getPesachDay() == 3 || type.getPesachDay() == 5)
                 {
@@ -433,8 +433,6 @@ public class Hebrew extends Year
             }
         }
 
-        set(year,1,1);
-
         // Shabat is special if dayInYear > 0;
         int dayInYear = ShabatHoli.getDayInYear(getYearType(), parasha);
         if (dayInYear > 0)
@@ -443,7 +441,8 @@ public class Hebrew extends Year
             return;
         }
 
-        addDays(Shabbat.getDayInYear(getYearType(), parasha, !secondPhase) - 1);
+        int days = Shabbat.getDayInYear(type, parasha, !secondPhase);
+        addDays(days - 1);
     }
 
     @Override public void addDays(int days)

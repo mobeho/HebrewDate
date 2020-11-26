@@ -294,16 +294,21 @@ public class Shabbat
 
         // Shabat Pesach
         theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 15);
-        if (yearType.getPesachDay() == 7 && dayInYear >= theDay - 6) {
-            if (dayInYear <= theDay) return ShabatHoli.PESACH.toString();
-        }
+        if (yearType.getPesachDay() == 7 && dayInYear >= theDay - 6 && dayInYear <= theDay)
+            return ShabatHoli.BEPESACH.toString();
 
         // Shabat BePesach
         theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 8 + yearType.getPesachDay());
-        if (theDay < yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 8) && dayInYear >= theDay - 6) {
+        if (yearType.getPesachDay() != 1 && dayInYear >= theDay - 6)
+        {
             if (dayInYear <= theDay) return ShabatHoli.BEPESACH.toString();
-            else shabat -= 7;
+            else shabat -= 7; // less Parasha due to Shabat be Pesach
         }
+
+        // Shabat Shviee Pesach
+        theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 1);
+        if (yearType.getPesachDay() == 1 && dayInYear >= theDay - 6 && dayInYear <= theDay)
+            return ShabatHoli.BEPESACH.toString();
 
         // Tazriaa Metzora
         theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 23 + yearType.getPesachDay());
