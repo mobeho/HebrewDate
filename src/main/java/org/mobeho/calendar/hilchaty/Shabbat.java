@@ -306,9 +306,9 @@ public class Shabbat
         }
 
         // Shabat Shviee Pesach
-        theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 1);
+        theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 7);
         if (yearType.getPesachDay() == 1 && dayInYear >= theDay - 6 && dayInYear <= theDay)
-            return ShabatHoli.BEPESACH.toString();
+            return ShabatHoli.SHVIEE.toString();
 
         // Tazriaa Metzora
         theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 23 + yearType.getPesachDay());

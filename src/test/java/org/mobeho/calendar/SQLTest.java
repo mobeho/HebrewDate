@@ -5,8 +5,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class SQLTest {
-    private String clearSQL(String result) {
+public class SQLTest
+{
+    private String clearSQL(String result)
+    {
         return result
                 .replace("CASE WHEN M > 0 AND D > 0 THEN\n ", "")
                 .replace("( (M-1)*29 + FLOOR(M/2) + D\n  +", "")
@@ -155,11 +157,11 @@ public class SQLTest {
         assertEquals("(CASE WHEN M>3 THEN -1 ELSE 0 END)->  - 1) | 352 || (CASE WHEN (L=FALSE AND ((M=6 AND D=30) OR M>6)) THEN 30 ELSE 0 END)-> ) | 4", result);
     }
 
-    static final String SUKKOT = "OR S1 = " + ShabatHoli.BESUKKOT.getVal() + " ";
+    static final String BESUKKOT = "OR S1 = " + ShabatHoli.BESUKKOT.getVal() + " ";
     static final String CHANUKA = "OR S1 = " + ShabatHoli.CHANUKA.getVal() + " ";
     static final String SHIRA = "OR S1 = " + ShabatHoli.SHIRA.getVal() + " ";
     static final String HAGADOL = "OR S1 = " + ShabatHoli.HAGADOL.getVal() + " ";
-    static final String PESACH = "OR S1 = " + ShabatHoli.BEPESACH.getVal() + " ";
+    static final String BEPESACH = "OR S1 = " + ShabatHoli.BEPESACH.getVal() + " ";
     static final String TSHUVA = "OR S1 = " + ShabatHoli.TESHUVA.getVal() + " ";
 
     @Test
@@ -182,7 +184,7 @@ public class SQLTest {
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5779, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(0, "S").replace("\n", "");
-        assertEquals(SUKKOT, result);
+        assertEquals(BESUKKOT, result);
 
         //"ויקהל"
         date = HebrewDate.of(5779, 6, 25);
@@ -225,52 +227,52 @@ public class SQLTest {
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(3, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 18, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 18) " + CHANUKA + SHIRA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 18) " + CHANUKA + SHIRA, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 19, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 19) " + CHANUKA + SHIRA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 19) " + CHANUKA + SHIRA, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 20, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 20) " + CHANUKA + SHIRA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 20) " + CHANUKA + SHIRA, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 21, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 22) " + CHANUKA + SHIRA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 22) " + CHANUKA + SHIRA, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 22, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 23) " + CHANUKA + SHIRA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 23) " + CHANUKA + SHIRA, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 23, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) " + CHANUKA + SHIRA + HAGADOL, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) " + CHANUKA + SHIRA + HAGADOL, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 24, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
 
         //"נצבים"
         date = HebrewDate.of(5779, 13, 28);
         result = SQLForHebrew.of(date).sqlParashaInRange(4 + 25, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 25) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals(BESUKKOT + "OR (S1 - 51 BETWEEN 0 AND 2) OR (S2 - 51 BETWEEN 0 AND 2) " + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 25) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
     }
 
     @Test
@@ -284,17 +286,17 @@ public class SQLTest {
         //"וילך"
         date = HebrewDate.of(5779, 1, 6);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + SUKKOT, result);
+        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + BESUKKOT, result);
 
         //"וילך"
         date = HebrewDate.of(5779, 1, 6);
         result = SQLForHebrew.of(date).sqlParashaInRange(3, "S").replace("\n", "");
-        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"וילך"
         date = HebrewDate.of(5779, 1, 6);
         result = SQLForHebrew.of(date).sqlParashaInRange(4, "S").replace("\n", "");
-        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
+        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
 
         //"האזינו"
         date = HebrewDate.of(5779, 1, 13);
@@ -304,27 +306,27 @@ public class SQLTest {
         //"האזינו"
         date = HebrewDate.of(5779, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT, result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT, result);
 
         //"האזינו"
         date = HebrewDate.of(5779, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"האזינו"
         date = HebrewDate.of(5779, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(3, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5779, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(0, "S").replace("\n", "");
-        assertEquals(SUKKOT + "", result);
+        assertEquals(BESUKKOT + "", result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5779, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals(BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5779, 1, 27);
@@ -387,17 +389,17 @@ public class SQLTest {
         //"האזינו"
         date = HebrewDate.of(5780, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT, result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT, result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5779, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(0, "S").replace("\n", "");
-        assertEquals(SUKKOT + "", result);
+        assertEquals(BESUKKOT + "", result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5779, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals(BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
@@ -412,12 +414,12 @@ public class SQLTest {
         //"צו"
         date = HebrewDate.of(5780, 7, 10);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals("OR (S1 - 25 BETWEEN 0 AND 0) " + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 25 BETWEEN 0 AND 0) " + HAGADOL + BEPESACH, result);
 
         //"צו"
         date = HebrewDate.of(5780, 7, 10);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals("OR (S1 - 25 BETWEEN 0 AND 1) " + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 25 BETWEEN 0 AND 1) " + HAGADOL + BEPESACH, result);
 
         //"תזריע-מצרע"
         date = HebrewDate.of(5780, 8, 1);
@@ -461,17 +463,17 @@ public class SQLTest {
         //"וילך"
         date = HebrewDate.of(5780, 1, 6);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + SUKKOT, result);
+        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + BESUKKOT, result);
 
         //"וילך"
         date = HebrewDate.of(5780, 1, 6);
         result = SQLForHebrew.of(date).sqlParashaInRange(3, "S").replace("\n", "");
-        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"וילך"
         date = HebrewDate.of(5780, 1, 6);
         result = SQLForHebrew.of(date).sqlParashaInRange(4, "S").replace("\n", "");
-        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
+        assertEquals("OR (S1 - 52 BETWEEN 0 AND 1) OR (S2 - 52 BETWEEN 0 AND 1) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
 
         //"האזינו"
         date = HebrewDate.of(5780, 1, 13);
@@ -481,32 +483,32 @@ public class SQLTest {
         //"האזינו"
         date = HebrewDate.of(5780, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT, result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT, result);
 
         //"האזינו"
         date = HebrewDate.of(5780, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"האזינו"
         date = HebrewDate.of(5780, 1, 13);
         result = SQLForHebrew.of(date).sqlParashaInRange(3, "S").replace("\n", "");
-        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
+        assertEquals("OR (S1 - 53 BETWEEN 0 AND 0) " + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5779, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(0, "S").replace("\n", "");
-        assertEquals(SUKKOT, result);
+        assertEquals(BESUKKOT, result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5780, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals(BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"שבת חול המועד סוכות"
         date = HebrewDate.of(5780, 1, 20);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
+        assertEquals(BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 1) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
@@ -531,137 +533,137 @@ public class SQLTest {
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(24, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 24) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 24) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(25, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 25) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 25) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(26, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 27) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 27) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(27, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 29) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 29) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(29, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 32) " + CHANUKA + SHIRA + HAGADOL + PESACH, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 32) " + CHANUKA + SHIRA + HAGADOL + BEPESACH, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(47, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 51) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 51) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(48, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(49, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(50, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
         result = SQLForHebrew.of(date).sqlParashaInRange(51, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+20, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 20) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 20, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 20) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+21, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 22) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 21, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 22) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+23, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 23, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+24, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 24, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 24) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+25, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 25) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 25, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 25) ", result);
 
         //"בראשית"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+26, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 27) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 26, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 27) ", result);
 
         //"year and half"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+27, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 29) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 27, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 29) ", result);
 
         //"2 years"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+47, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 51) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 47, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 51) ", result);
 
         //"2 years"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+48, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 52) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 48, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 52) ", result);
 
         //"2 years"
         date = HebrewDate.of(5780, 1, 27);
-        result = SQLForHebrew.of(date).sqlParashaInRange(51+49, "S").replace("\n", "");
-        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + PESACH + TSHUVA + SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 52) ", result);
+        result = SQLForHebrew.of(date).sqlParashaInRange(51 + 49, "S").replace("\n", "");
+        assertEquals("OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + BEPESACH + TSHUVA + BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 52) ", result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(25, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 30) OR (S2 - 22 BETWEEN 0 AND 30) " + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 30) OR (S2 - 22 BETWEEN 0 AND 30) " + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(26, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 30) OR (S2 - 22 BETWEEN 0 AND 30) " + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 30) OR (S2 - 22 BETWEEN 0 AND 30) " + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(27, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(28, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(29, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + PESACH + TSHUVA, result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + BEPESACH + TSHUVA, result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(30, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"ויקהל-פקודי"
         date = HebrewDate.of(5780, 6, 25);
         result = SQLForHebrew.of(date).sqlParashaInRange(60, "S").replace("\n", "");
-        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + PESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 33) " + CHANUKA + SHIRA, result);
+        assertEquals("OR (S1 - 22 BETWEEN 0 AND 31) OR (S2 - 22 BETWEEN 0 AND 31) " + HAGADOL + BEPESACH + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 33) " + CHANUKA + SHIRA, result);
     }
 
     @Test
@@ -764,12 +766,12 @@ public class SQLTest {
         //"בראשית"
         date = HebrewDate.of(5781, 1, 29);
         result = SQLForHebrew.of(date).sqlParashaInRange(49, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + TSHUVA, result);
+        assertEquals(BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + TSHUVA, result);
 
         //"בראשית"
         date = HebrewDate.of(5781, 1, 29);
         result = SQLForHebrew.of(date).sqlParashaInRange(50, "S").replace("\n", "");
-        assertEquals(SUKKOT + "OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
+        assertEquals(BESUKKOT + "OR (S1 - 1 BETWEEN 0 AND 52) " + CHANUKA + SHIRA + HAGADOL + TSHUVA + "OR (S1 - 1 BETWEEN 0 AND 0) ", result);
 
         //"צו"
         date = HebrewDate.of(5781, 7, 14);
@@ -794,6 +796,11 @@ public class SQLTest {
         //"שביעי של פסח"
         date = HebrewDate.of(5781, 7, 21);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals("OR (S1 - 26 BETWEEN 0 AND 0) ", result);
+        assertEquals( "OR (S1 - 27 BETWEEN 0 AND 1) OR (S2 - 27 BETWEEN 0 AND 1) ", result);
+
+        //"שביעי של פסח"
+        date = HebrewDate.of(5781, 7, 21);
+        result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
+        assertEquals("OR (S1 - 27 BETWEEN 0 AND 3) OR (S2 - 27 BETWEEN 0 AND 3) ", result);
     }
 }
