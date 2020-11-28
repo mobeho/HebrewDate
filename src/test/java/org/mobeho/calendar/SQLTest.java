@@ -796,11 +796,16 @@ public class SQLTest
         //"שביעי של פסח"
         date = HebrewDate.of(5781, 7, 21);
         result = SQLForHebrew.of(date).sqlParashaInRange(1, "S").replace("\n", "");
-        assertEquals( "OR (S1 - 27 BETWEEN 0 AND 1) OR (S2 - 27 BETWEEN 0 AND 1) ", result);
+        assertEquals( "OR (S1 - 26 BETWEEN 0 AND 0) ", result);
 
         //"שביעי של פסח"
         date = HebrewDate.of(5781, 7, 21);
         result = SQLForHebrew.of(date).sqlParashaInRange(2, "S").replace("\n", "");
-        assertEquals("OR (S1 - 27 BETWEEN 0 AND 3) OR (S2 - 27 BETWEEN 0 AND 3) ", result);
+        assertEquals("OR (S1 - 26 BETWEEN 0 AND 2) ", result);
+
+        //"שביעי של פסח"
+        date = HebrewDate.of(5781, 7, 21);
+        result = SQLForHebrew.of(date).sqlParashaInRange(3, "S").replace("\n", "");
+        assertEquals("OR (S1 - 26 BETWEEN 0 AND 4) ", result);
     }
 }

@@ -24,6 +24,10 @@ public class CalendarTest
    @Test
    public void checkHebrewChris()
    {
+
+      HebrewDate date1 = HebrewDate.of("כח ניסן התשפא");
+      String s = date1.getShabatName();
+
       HebrewDate date = HebrewDate.of("ז אלול התשלא");
       assertEquals(LocalDate.of(1971, 8, 28), date.getLocalDate());
 

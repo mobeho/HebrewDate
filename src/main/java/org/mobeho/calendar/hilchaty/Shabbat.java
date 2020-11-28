@@ -299,9 +299,9 @@ public class Shabbat
 
         // Shabat BePesach
         theDay = yearType.numberDaysInYear - (29 + 30 + 29 + 30 + 29 + 8 + yearType.getPesachDay());
-        if (yearType.getPesachDay() != 1 && dayInYear >= theDay - 6)
+        if (dayInYear >= theDay - 6)
         {
-            if (dayInYear <= theDay) return ShabatHoli.BEPESACH.toString();
+            if (yearType.getPesachDay() != 1 && dayInYear <= theDay) return ShabatHoli.BEPESACH.toString();
             else shabat -= 7; // less Parasha due to Shabat be Pesach
         }
 
