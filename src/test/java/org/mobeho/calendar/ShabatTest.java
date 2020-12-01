@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mobeho.calendar.HebrewDate.getShabatIndexes;
 
 /// <Description>
@@ -252,9 +253,8 @@ public class ShabatTest
    public void checkShabatDayInYearבחג()
    {
       final YearType type = YearType.בחג;
-      assertEquals(6, Shabbat.getDayInYear(type, Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      assertEquals(6, Shabbat.getDayInYear(type, Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(13, Shabbat.getDayInYear(type, Shabbat.Shabbatot.האזינו.ordinal()+1));
-
       assertEquals(27, Shabbat.getDayInYear(type, Shabbat.Shabbatot.בראשית.ordinal()+1));
       assertEquals(34, Shabbat.getDayInYear(type, Shabbat.Shabbatot.נח.ordinal()+1));
       assertEquals(41, Shabbat.getDayInYear(type, Shabbat.Shabbatot.לך_לך.ordinal()+1));
@@ -306,7 +306,8 @@ public class ShabatTest
       assertEquals(335, Shabbat.getDayInYear(type, Shabbat.Shabbatot.כי_תצא.ordinal()+1));
       assertEquals(342, Shabbat.getDayInYear(type, Shabbat.Shabbatot.כי_תבוא.ordinal()+1));
       assertEquals(349, Shabbat.getDayInYear(type, Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(349, Shabbat.getDayInYear(type, Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(349, Shabbat.getDayInYear(type, Shabbat.Shabbatot.וילך.ordinal()+1, true));
+
    }
 
 
@@ -377,7 +378,7 @@ public class ShabatTest
    public void checkShabatDayInYearבחה()
    {
       final YearType type = YearType.בחה;
-      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(13, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(20, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
       assertEquals(27, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בראשית.ordinal()+1));
@@ -432,14 +433,14 @@ public class ShabatTest
       assertEquals(363, Shabbat.getDayInYear(type,Shabbat.Shabbatot.כי_תצא.ordinal()+1));
       assertEquals(370, Shabbat.getDayInYear(type,Shabbat.Shabbatot.כי_תבוא.ordinal()+1));
       assertEquals(377, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(377, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(377, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearבשה()
    {
       final YearType type = YearType.בשה;
-      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(13, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(20, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
       assertEquals(174, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -456,14 +457,14 @@ public class ShabatTest
       assertEquals(230, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(230, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(349, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(349, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(349, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearבשז()
    {
       final YearType type = YearType.בשז;
-      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(13, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(20, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
       assertEquals(174, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -480,14 +481,15 @@ public class ShabatTest
       assertEquals(251, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(258, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(384, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      // Only one וילך at the first of the this year
+      assertEquals(6, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearגכה()
    {
       final YearType type = YearType.גכה;
-      assertEquals(5, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      assertEquals(5, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, false));
       assertEquals(12, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(19, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
       assertEquals(173, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -504,14 +506,14 @@ public class ShabatTest
       assertEquals(229, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(229, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(348, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(348, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(348, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearגכז()
    {
       final YearType type = YearType.גכז;
-      assertEquals(5, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      assertEquals(5, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(12, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(19, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
       assertEquals(173, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -528,14 +530,16 @@ public class ShabatTest
       assertEquals(250, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(257, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(383, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      // Only one וילך at the start of the this year
+      assertEquals(5, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearהכז()
    {
       final YearType type = YearType.הכז;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(3, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(10, ShabatHoli.getDayInYear(type, ShabatHoli.YOM_KIPUR.getVal()));
       assertEquals(17, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
@@ -553,14 +557,16 @@ public class ShabatTest
       assertEquals(227, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(234, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(353, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearהחא()
    {
       final YearType type = YearType.החא;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(3, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(10, ShabatHoli.getDayInYear(type, ShabatHoli.YOM_KIPUR.getVal()));
       assertEquals(17, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
@@ -578,14 +584,16 @@ public class ShabatTest
       assertEquals(248, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(255, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(381, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearהשא()
    {
       final YearType type = YearType.השא;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(3, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(10, ShabatHoli.getDayInYear(type, ShabatHoli.YOM_KIPUR.getVal()));
       assertEquals(17, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
@@ -603,14 +611,16 @@ public class ShabatTest
       assertEquals(234, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(234, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(353, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearהשג()
    {
       final YearType type = YearType.השג;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // Only one וילך at the end of the this year
+      assertEquals(381, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(3, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(10, ShabatHoli.getDayInYear(type, ShabatHoli.YOM_KIPUR.getVal()));
       assertEquals(17, ShabatHoli.getDayInYear(type, ShabatHoli.BESUKKOT.getVal()));
@@ -628,14 +638,15 @@ public class ShabatTest
       assertEquals(248, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(255, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(381, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(381, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(381, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearזחא()
    {
       final YearType type = YearType.זחא;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // No וילך for this  year
+      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(8, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(15, ShabatHoli.getDayInYear(type, ShabatHoli.SUKKOT.getVal()));
       assertEquals(176, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -652,6 +663,7 @@ public class ShabatTest
       assertEquals(232, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(232, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(351, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
+      // No וילך for this  year
       assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
    }
 
@@ -659,7 +671,8 @@ public class ShabatTest
    public void checkShabatDayInYearזחג()
    {
       final YearType type = YearType.זחג;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // Only one וילך at the end of the this year
+      assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(8, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(15, ShabatHoli.getDayInYear(type, ShabatHoli.SUKKOT.getVal()));
       assertEquals(176, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -676,14 +689,15 @@ public class ShabatTest
       assertEquals(253, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(260, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearזשג()
    {
       final YearType type = YearType.זשג;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // Only one וילך at the end of the this year
+      assertEquals(351, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(8, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(15, ShabatHoli.getDayInYear(type, ShabatHoli.SUKKOT.getVal()));
       assertEquals(176, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -700,14 +714,15 @@ public class ShabatTest
       assertEquals(232, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(232, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(351, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(351, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(351, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
    public void checkShabatDayInYearזשה()
    {
       final YearType type = YearType.זשה;
-      assertEquals(-1, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
+      // Only one וילך at the end of the this year
+      assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
       assertEquals(8, Shabbat.getDayInYear(type,Shabbat.Shabbatot.האזינו.ordinal()+1));
       assertEquals(15, ShabatHoli.getDayInYear(type, ShabatHoli.SUKKOT.getVal()));
       assertEquals(176, Shabbat.getDayInYear(type,Shabbat.Shabbatot.ויקהל.ordinal()+1));
@@ -724,7 +739,7 @@ public class ShabatTest
       assertEquals(253, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בהר.ordinal()+1));
       assertEquals(260, Shabbat.getDayInYear(type,Shabbat.Shabbatot.בחקתי.ordinal()+1));
       assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.נצבים.ordinal()+1));
-      assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1));
+      assertEquals(379, Shabbat.getDayInYear(type,Shabbat.Shabbatot.וילך.ordinal()+1, true));
    }
 
    @Test
@@ -749,22 +764,186 @@ public class ShabatTest
    }
 
    @Test
-   public void setParashaבשז()
+   public void vayelechOverYears()
    {
-      HebrewDate date = HebrewDate.ofParasha(5779, Shabbat.Shabbatot.נצבים.ordinal()+1, true);
+      // בשז
+      HebrewDate date = HebrewDate.ofParasha(5779, Shabbat.Shabbatot.וילך.ordinal()+1, false);
       assertEquals(5779, date.getYear());
-      assertEquals(13, date.getMonth());
-      assertEquals(28, date.getDay());
-
-      date = HebrewDate.ofParasha(5780, Shabbat.Shabbatot.וילך.ordinal()+1, false);
-      assertEquals(5780, date.getYear());
       assertEquals(1, date.getMonth());
       assertEquals(6, date.getDay());
 
-      date = HebrewDate.ofParasha(5780, Shabbat.Shabbatot.האזינו.ordinal()+1, false);
-      assertEquals(5780, date.getYear());
+      date = HebrewDate.ofParasha(5779, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5779, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(6, date.getDay());
+
+      // זחא
+      date = HebrewDate.ofParasha(5781, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertNull(date);
+
+      date = HebrewDate.ofParasha(5781, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertNull(date);
+
+      // גכז
+      date = HebrewDate.ofParasha(5782, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5782, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(5, date.getDay());
+
+      date = HebrewDate.ofParasha(5782, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5782, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(5, date.getDay());
+
+      // בשה
+      date = HebrewDate.ofParasha(5783, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5783, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(6, date.getDay());
+
+      date = HebrewDate.ofParasha(5783, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5783, date.getYear());
+      assertEquals(12, date.getMonth());
+      assertEquals(23, date.getDay());
+
+      // זחג
+      date = HebrewDate.ofParasha(5784, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5784, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(25, date.getDay());
+
+      date = HebrewDate.ofParasha(5784, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5784, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(25, date.getDay());
+
+      //השא
+      date = HebrewDate.ofParasha(5785, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertNull(date);
+
+      date = HebrewDate.ofParasha(5785, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertNull(date);
+
+      // גכה
+      date = HebrewDate.ofParasha(5786, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5786, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(5, date.getDay());
+
+      date = HebrewDate.ofParasha(5786, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5786, date.getYear());
+      assertEquals(12, date.getMonth());
+      assertEquals(23, date.getDay());
+
+      // זשה
+      date = HebrewDate.ofParasha(5787, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5787, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(23, date.getDay());
+
+      date = HebrewDate.ofParasha(5787, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5787, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(23, date.getDay());
+
+      // זשג
+      date = HebrewDate.ofParasha(5788, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5788, date.getYear());
+      assertEquals(12, date.getMonth());
+      assertEquals(25, date.getDay());
+
+      date = HebrewDate.ofParasha(5788, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5788, date.getYear());
+      assertEquals(12, date.getMonth());
+      assertEquals(25, date.getDay());
+
+      // הכז
+      date = HebrewDate.ofParasha(5789, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertNull(date);
+
+      date = HebrewDate.ofParasha(5789, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertNull(date);
+
+      // בחה
+      date = HebrewDate.ofParasha(5790, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5790, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(6, date.getDay());
+
+      date = HebrewDate.ofParasha(5790, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5790, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(23, date.getDay());
+
+      // השג
+      date = HebrewDate.ofParasha(5795, Shabbat.Shabbatot.וילך.ordinal()+1, false);
+      assertEquals(5795, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(25, date.getDay());
+
+      date = HebrewDate.ofParasha(5795, Shabbat.Shabbatot.וילך.ordinal()+1, true);
+      assertEquals(5795, date.getYear());
+      assertEquals(13, date.getMonth());
+      assertEquals(25, date.getDay());
+   }
+
+   @Test
+   public void aazinuOverYears()
+   {
+      // זחא
+      HebrewDate date = HebrewDate.ofParasha(5781, Shabbat.Shabbatot.האזינו.ordinal()+1, false);
+      assertEquals(5781, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(8, date.getDay());
+
+      date = HebrewDate.ofParasha(5781, Shabbat.Shabbatot.האזינו.ordinal()+1, true);
+      assertEquals(5781, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(8, date.getDay());
+
+      // גכז
+      date = HebrewDate.ofParasha(5782, Shabbat.Shabbatot.האזינו.ordinal()+1, false);
+      assertEquals(5782, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(12, date.getDay());
+
+      date = HebrewDate.ofParasha(5782, Shabbat.Shabbatot.האזינו.ordinal()+1, true);
+      assertEquals(5782, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(12, date.getDay());
+
+      // בשה
+      date = HebrewDate.ofParasha(5783, Shabbat.Shabbatot.האזינו.ordinal()+1, false);
+      assertEquals(5783, date.getYear());
       assertEquals(1, date.getMonth());
       assertEquals(13, date.getDay());
+
+      date = HebrewDate.ofParasha(5783, Shabbat.Shabbatot.האזינו.ordinal()+1, true);
+      assertEquals(5783, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(13, date.getDay());
+
+      // זחג
+      date = HebrewDate.ofParasha(5784, Shabbat.Shabbatot.האזינו.ordinal()+1, false);
+      assertEquals(5784, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(8, date.getDay());
+
+      date = HebrewDate.ofParasha(5784, Shabbat.Shabbatot.האזינו.ordinal()+1, true);
+      assertEquals(5784, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(8, date.getDay());
+
+      //השא
+      date = HebrewDate.ofParasha(5785, Shabbat.Shabbatot.האזינו.ordinal()+1, false);
+      assertEquals(5785, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(3, date.getDay());
+
+      date = HebrewDate.ofParasha(5785, Shabbat.Shabbatot.האזינו.ordinal()+1, true);
+      assertEquals(5785, date.getYear());
+      assertEquals(1, date.getMonth());
+      assertEquals(3, date.getDay());
    }
 }
 

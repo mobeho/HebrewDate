@@ -396,55 +396,6 @@ public class Hebrew extends Year
         return MONTH_DAY.values()[day-1].toString() + " " + MONTHS.values()[month-1].toString();
     }
 
-    public void setParasha(int parasha, boolean secondPhase)
-    {
-        YearType type = getYearType();
-
-        // Rest of the year after Rosh Hashana
-        if (secondPhase && (parasha >= (Shabbat.Shabbatot.וילך.ordinal() + 1)))
-        {
-            if (parasha == (Shabbat.Shabbatot.האזינו.ordinal() + 1))
-            {
-                set(year+1,1,1);
-                int firstDay = type.getFirstDay();
-                if (firstDay == 5)
-                {
-                    addDays(3 - 1);
-                }
-                else
-                {
-                    addDays(15 - firstDay - 1);
-                }
-                return;
-            }
-
-            else if ((parasha == (Shabbat.Shabbatot.וילך.ordinal() + 1)))
-            {
-                if (type.getPesachDay() == 3 || type.getPesachDay() == 5)
-                {
-                    addDays(type.getNumberDaysInYear() - type.getPesachDay() - 2);
-                    return;
-                }
-
-                set(year+1,1,1);
-                int firstDay = type.getFirstDay();
-                addDays(8 - firstDay - 1);
-                return;
-            }
-        }
-
-        // Shabat is special if dayInYear > 0;
-        int dayInYear = ShabatHoli.getDayInYear(getYearType(), parasha);
-        if (dayInYear > 0)
-        {
-            addDays(dayInYear - 1);
-            return;
-        }
-
-        int days = Shabbat.getDayInYear(type, parasha, !secondPhase);
-        addDays(days - 1);
-    }
-
     @Override public void addDays(int days)
     {
         super.addDays(days);

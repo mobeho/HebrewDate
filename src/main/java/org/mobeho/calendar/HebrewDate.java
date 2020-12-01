@@ -78,8 +78,13 @@ public class HebrewDate
     public static HebrewDate ofParasha(int year, int parasha, boolean secondPhase)
     {
         HebrewDate me = new HebrewDate(year >= 5660 && parasha >= 15);
+
         me.hebrew.set(year, 1, 1);
-        me.hebrew.setParasha(parasha, secondPhase);
+        int days = Shabbat.getDayInYear(me.getYearType(), parasha, secondPhase);
+        if (days == -1)
+            return null;
+
+        me.addDays(days - 1);
         me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
         return me;
     }

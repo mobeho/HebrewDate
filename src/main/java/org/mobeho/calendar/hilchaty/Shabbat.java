@@ -31,36 +31,60 @@ public class Shabbat
     {
         return getDayInYear(yearType, shabatIndex, false);
     }
-	
+
 	/**
-	 * Get day in year from parasha
+	 * Get day in year from shabatIndex
 	 * @param yearType of the year
-	 * @param parasha index. Bereshit = 1, Aazinu = 53
-	 * @param prevYear is true, when Vayelech in Tishrei, false when in Elul
+	 * @param shabatIndex index. Bereshit = 1, Aazinu = 53
+	 * @param secondPhase Only when there are two Vayelech, false for the one in Tishrei, true for the one in Elul
 	 * @return day in year
 	 */
-	public static int getDayInYear(YearType yearType, int parasha, boolean prevYear)
+	public static int getDayInYear(YearType yearType, int shabatIndex, boolean secondPhase)
 	{
-      // shabatIndex = 1 is Bereshit so recude to set according Shabbatot
-		parasha--;
-		
-		if (parasha == (Shabbatot.האזינו.ordinal()))
-		{
-			if (yearType.getFirstDay() == 5) return 3;
-			else return 15 - yearType.getFirstDay();
-		}
-		
-		if (parasha == (Shabbatot.וילך.ordinal()))
-		{
-			if (prevYear && (yearType.getFirstDay() == 2 || yearType.getFirstDay() == 3))
-				return 8 - yearType.getFirstDay();
-			else
-				if (!prevYear && (yearType.getPesachDay() == 3 || yearType.getPesachDay() == 5))
-					return yearType.numberDaysInYear - yearType.getPesachDay() - 1;
-				else return -1;
-		}
-		
-		int week = convertParashaToWeek(yearType, parasha);
+        // Shabat is special - not shabatIndex
+        if (shabatIndex >= ShabatHoli.ROSH_HASHANA.getVal())
+        {
+            int dayInYear = ShabatHoli.getDayInYear(yearType, shabatIndex);
+            if (dayInYear > 0)
+                return dayInYear;
+            else
+                return -1;
+        }
+
+        // shabatIndex = 1 is Bereshit so recude to set according Shabbatot
+		shabatIndex--;
+        int firstDay = yearType.getFirstDay();
+
+        if (shabatIndex == (Shabbat.Shabbatot.האזינו.ordinal()))
+        {
+            if (firstDay == 5)
+                return 3;
+            else
+                return 15 - firstDay;
+        }
+
+        else if ((shabatIndex == (Shabbat.Shabbatot.וילך.ordinal())))
+        {
+            // Year that doesn't contain וילך at all
+            if (YearType.הכז.equals(yearType) || YearType.החא.equals(yearType) || YearType.השא.equals(yearType) || YearType.זחא.equals(yearType))
+                return -1;
+
+            // Year that contains וילך at start of the year
+            if (YearType.בשז.equals(yearType) || YearType.גכז.equals(yearType))
+                return 8 - firstDay;
+
+            if (YearType.השג.equals(yearType) || YearType.זחג.equals(yearType) || YearType.זשג.equals(yearType) || YearType.זשה.equals(yearType))
+                return yearType.getNumberDaysInYear() - yearType.getPesachDay() - 1;
+
+            //בחג || בחה || בשה || בשז || גכה
+            if (!secondPhase)
+                return 8 - firstDay;
+
+            // Year that contains וילך at the end of the year
+            return yearType.getNumberDaysInYear() - yearType.getPesachDay() - 1;
+        }
+
+		int week = convertParashaToWeek(yearType, shabatIndex);
 		return 29 - (yearType.getFirstDay() % 7) + week * 7;
 	}
    
