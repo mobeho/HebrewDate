@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.mobeho.calendar.cyclic.DafYomiBavli;
 import org.mobeho.calendar.cyclic.SummerTime;
 import org.mobeho.calendar.cyclic.SunRiseAndSet;
+import java.util.Calendar;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -38,19 +39,25 @@ public class CyclicTest
         }
     }
 
-    public void find()
+    @Test
+    public void ShowPlace()
     {
-        double[] results = SunRiseAndSet.getTimes(2, 31.87111, 34.99081, 17);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -1);
+        int days = cal.get(Calendar.DAY_OF_YEAR);
+
+        double[] results = SunRiseAndSet.getTimes(2, 31.777970, 35.235416, days);
         Double morningTime = results[0];
         Double riseTime = results[1];
         Double noonTime = results[2];
         Double setTime = results[3];
         Double eveningTime = results[4];
 
-        System.out.print("Morning: "+ morningTime.intValue()   + ":" + (int)((morningTime -    morningTime.intValue()) * 60));
-        System.out.print(" | Rise: "+ riseTime.intValue()      + ":" + (int)((riseTime -       riseTime.intValue()) * 60));
-        System.out.print(" | Noon: " + noonTime.intValue()      + ":" + (int)((noonTime -       noonTime.intValue()) * 60));
-        System.out.print(" | Set: " + setTime.intValue()       + ":" + (int)((setTime -        setTime.intValue()) * 60));
-        System.out.print(" | Evening: " + eveningTime.intValue()    + ":" + (int)((eveningTime -     eveningTime.intValue()) * 60));
+        System.out.print("Morning: "+ SunRiseAndSet.timeToString(morningTime));
+        System.out.print(" | Rise: "+ SunRiseAndSet.timeToString(riseTime));
+        System.out.print(" | Noon: " + SunRiseAndSet.timeToString(noonTime));
+        System.out.print(" | Set: " + SunRiseAndSet.timeToString(setTime));
+        System.out.print(" | Evening: " + SunRiseAndSet.timeToString(eveningTime));
+        System.out.println("\n");
     }
 }

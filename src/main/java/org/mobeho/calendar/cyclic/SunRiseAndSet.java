@@ -75,7 +75,7 @@ public class SunRiseAndSet
         if (fo == 0)
             return new double[]{};
 
-        double df1 = rads * 6D;
+        double df1 = rads * 8D;
         if (latit < 0D)
             df1 = -df1;
 
@@ -91,8 +91,8 @@ public class SunRiseAndSet
         if (daylen < 0.0001D)
             daylen = 0D;
 
-        double riseTime = (12D - 12D * fo / Math.PI + timeZone - longit / 15D + equation / 60D);
-        double setTime = (12D + 12D * fo / Math.PI + timeZone - longit / 15D + equation / 60D);
+        double riseTime = (12D - 12.06042D * fo / Math.PI + timeZone - longit / 15D + equation / 60D);
+        double setTime = (12D + 12.0592D * fo / Math.PI + timeZone - longit / 15D + equation / 60D);
 
         double noonTime = riseTime + 12D * fo / Math.PI;
         /*
