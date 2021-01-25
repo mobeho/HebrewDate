@@ -283,6 +283,11 @@ public class HebrewDate
         return this.hebrew.getDayInMonth();
     }
 
+    public int getDayInYear()
+    {
+        return this.hebrew.getDayInYear();
+    }
+
     public String getDayString()
     {
         return this.hebrew.getDayString();
@@ -308,9 +313,9 @@ public class HebrewDate
         return this.christian.getDayString();
     }
 
-    public int getDayInYear()
+    public int getChrisDayInYear()
     {
-        return this.hebrew.getDayInYear();
+        return this.christian.getDayInYear();
     }
 
     public int getDayOfWeak()

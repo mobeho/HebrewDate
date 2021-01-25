@@ -4,6 +4,10 @@ import org.junit.Test;
 import org.mobeho.calendar.cyclic.DafYomiBavli;
 import org.mobeho.calendar.cyclic.SummerTime;
 import org.mobeho.calendar.cyclic.SunRiseAndSet;
+import org.mobeho.calendar.hilchaty.Hebrew;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import static junit.framework.TestCase.assertEquals;
@@ -40,24 +44,14 @@ public class CyclicTest
     }
 
     @Test
-    public void ShowPlace()
+    public void showPlace()
     {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_YEAR, -1);
-        int days = cal.get(Calendar.DAY_OF_YEAR);
-
-        double[] results = SunRiseAndSet.getTimes(2, 31.777970, 35.235416, days);
-        Double morningTime = results[0];
-        Double riseTime = results[1];
-        Double noonTime = results[2];
-        Double setTime = results[3];
-        Double eveningTime = results[4];
-
-        System.out.print("Morning: "+ SunRiseAndSet.timeToString(morningTime));
-        System.out.print(" | Rise: "+ SunRiseAndSet.timeToString(riseTime));
-        System.out.print(" | Noon: " + SunRiseAndSet.timeToString(noonTime));
-        System.out.print(" | Set: " + SunRiseAndSet.timeToString(setTime));
-        System.out.print(" | Evening: " + SunRiseAndSet.timeToString(eveningTime));
-        System.out.println("\n");
+        HebrewDate date = HebrewDate.now();
+        HebrewDate until = HebrewDate.of(date).addDays(100);
+        for (; date.getDaysFromStart() < until.getDaysFromStart(); date.addDays(7))
+        {
+            String[] times = TimesForHebrew.of(date, TimesForHebrew.Location.Modiin).getSunSetAndRise();
+            System.out.println(date.toString() + ": " + times[0] + " " + times[1]);
+        }
     }
 }
