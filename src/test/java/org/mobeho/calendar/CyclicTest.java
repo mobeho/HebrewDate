@@ -62,12 +62,12 @@ public class CyclicTest
         date = HebrewDate.of(5743, 3, 8);
         while (date.getYear() <= 6000)
         {
-            assertEquals("מחזור:" + (machzor++) + " - מסכת:נדה דף:עג", DafYomiBavli.getFullInfo(date));
+            assertEquals("מחזור:" + (machzor++) + " - נדה עג", DafYomiBavli.getFullInfo(date));
             date.addDays(2711);
         }
 
         date = HebrewDate.of(5747, 2, 7);
-        assertEquals("מסכת:בבא קמא דף:מח", DafYomiBavli.getInfo(date));
+        assertEquals("בבא קמא מח", DafYomiBavli.getInfo(date));
         assertEquals(9, DafYomiBavli.getCycle(date));
         assertEquals(21, DafYomiBavli.getMasechetIndex(date));
         assertEquals("בבא קמא", DafYomiBavli.getMasechetName(date));

@@ -1,7 +1,6 @@
 package org.mobeho.calendar;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 
 /// <Description>
 /// Author: Michael Maimon
@@ -304,16 +303,8 @@ public class Christian
         return 0;
     }
 
-    HashMap<Integer, String> WeakDay = new HashMap<Integer, String>()
-    {{
-        put(1, "Sunday");
-        put(2, "Monday");
-        put(3, "Tuesday");
-        put(4, "Wednesday");
-        put(5, "Thursday");
-        put(6, "Friday");
-        put(7, "Saturday");
-    }};
+    String[] weakDayStrings = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    String[] monthStrings = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     int getNumberDaysInMonth()
     {
@@ -373,11 +364,15 @@ public class Christian
     }
     public String getDayOfWeakString()
     {
-        return WeakDay.get(getDayOfWeak());
+        return weakDayStrings[this.dayOfWeak - 1];
     }
     public int getMonth()
     {
         return this.month;
+    }
+    public String getMonthString()
+    {
+        return monthStrings[this.month - 1];
     }
     public int getYear()
     {

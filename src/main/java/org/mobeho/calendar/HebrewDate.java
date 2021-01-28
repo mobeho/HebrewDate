@@ -263,6 +263,11 @@ public class HebrewDate
         return this.christian.getMonth();
     }
 
+    public String getChrisMonthString()
+    {
+        return this.christian.getMonthString();
+    }
+
     public int[] getMolad()
     {
         return new int[]{this.hebrew.getMoladHachodesh(), this.hebrew.getMoladHachodeshTime().getHour(), this.hebrew.getMoladHachodeshTime().getJiffy()};
@@ -404,9 +409,19 @@ public class HebrewDate
         return getDayString() + delimiter + getMonthString() + delimiter + getYearString();
     }
 
+    public String toDayMonthString(String delimiter)
+    {
+        return getDayString() + delimiter + getMonthString();
+    }
+
     public String toChrisString()
     {
         return this.christian.toString();
+    }
+
+    public String toDayMonthChrisString(String delimiter)
+    {
+        return getChrisDayString() + delimiter + getChrisMonthString();
     }
 
     public int getSfiratHaomer()

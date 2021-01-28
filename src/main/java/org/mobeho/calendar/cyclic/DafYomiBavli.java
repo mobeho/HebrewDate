@@ -102,7 +102,7 @@ public class DafYomiBavli
         if (place.length == 0)
             return null;
 
-        return String.format("מחזור:%d - מסכת:%s דף:%s", place[0], Shas[place[1]].Name, getPageString(place[2]));
+        return String.format("מחזור:%d - %s %s", place[0], Shas[place[1]].Name, getPageString(place[2]));
     }
 
     public static String getInfo(HebrewDate date)
@@ -111,7 +111,7 @@ public class DafYomiBavli
         if (place.length == 0)
             return null;
 
-        return String.format("מסכת:%s דף:%s", Shas[place[1]].Name, getPageString(place[2]));
+        return String.format("%s %s", Shas[place[1]].Name, getPageString(place[2]));
     }
 
     // 15/10/5775 start of the 8th cycle that contains 2711 pages
