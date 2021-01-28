@@ -161,8 +161,8 @@ public class CalendarTest
       HebrewDate untilEndOfWeek = HebrewDate.of(until).setNextShabat();
 
       System.out.printf("%s %s לפני %s בשנת %s[%s]%n", hebrew.getDayOfWeakString(), hebrew.getHolidayName(), hebrew.getShabatName(), hebrew.getYearString(), hebrew.getYearType() );
-      System.out.println(new DafYomiBavli().getInfo(hebrew));
-      System.out.println(SummerTime.getInfo(hebrew));
+      System.out.println(new DafYomiBavli().getFullInfo(hebrew));
+      System.out.println(SummerTime.getDayInfo(hebrew));
       System.out.println("|ראשון| שני |שלישי |רביעי|חמישי| שישי | שבת |               ");
       while (hebrew.getDaysFromStart() <= untilEndOfWeek.getDaysFromStart())
       {

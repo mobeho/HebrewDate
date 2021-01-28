@@ -2,16 +2,13 @@ package org.mobeho.calendar.cyclic;
 
 import org.mobeho.calendar.HebrewDate;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 /// <Description>
 /// Author: Michael Maimon
 /// Copyright (C) Mobeho.  All rights reserved.
 /// </Description>
 public class DafYomiBavli
 {
-    static class Masechet
+    private static class Masechet
     {
         public String Name;
         public int pages;
@@ -23,7 +20,7 @@ public class DafYomiBavli
         }
     }
 
-    Masechet[] Shas = new Masechet[]{
+    private static Masechet[] Shas = new Masechet[]{
             new Masechet("ברכות", 63),
             new Masechet("שבת", 156),
             new Masechet("עירובין", 104),
@@ -63,40 +60,89 @@ public class DafYomiBavli
             new Masechet("נדה", 72)
     };
 
-
-    // 2075613 - start
-    public String getInfo(HebrewDate date)
+    public static int getCycle(HebrewDate date)
     {
-        double cycle = (date.getDaysFromStart() - 2075613D) / 2711D;
+        return (int)((date.getDaysFromStart() - 2075613F) / 2711F) + 1;
+    }
 
-        if (cycle < 0)
-            return "";
+    // Starting from 1 for Brachot
+    public static int getMasechetIndex(HebrewDate date)
+    {
+        return getMasechetAndDaf(date)[1] + 1;
+    }
 
-        int daf = (int) ((cycle - Math.floor(cycle)) * 2711);
+    public static String getMasechetName(HebrewDate date)
+    {
+        return Shas[getMasechetAndDaf(date)[1]].Name;
+    }
 
-        int sum = 0;
-        int index = 0;
-        for (; index < Shas.length; index++)
+    public static int getPage(HebrewDate date)
+    {
+        return getMasechetAndDaf(date)[2];
+    }
+
+    public static String getPageName(HebrewDate date)
+    {
+        return getPageString(getMasechetAndDaf(date)[2]);
+    }
+
+    public static int getCoveredCurrentCycle(HebrewDate date)
+    {
+        int days =  date.getDaysFromStart() - 2094590;
+        if (days < 0)
+            return -1;
+
+        days = days % 2711;
+        return (int) (100F * days / 2711F);
+    }
+
+    public static String getFullInfo(HebrewDate date)
+    {
+        int[] place = getMasechetAndDaf(date);
+        if (place.length == 0)
+            return null;
+
+        return String.format("מחזור:%d - מסכת:%s דף:%s", place[0], Shas[place[1]].Name, getPageString(place[2]));
+    }
+
+    public static String getInfo(HebrewDate date)
+    {
+        int[] place = getMasechetAndDaf(date);
+        if (place.length == 0)
+            return null;
+
+        return String.format("מסכת:%s דף:%s", Shas[place[1]].Name, getPageString(place[2]));
+    }
+
+    // 15/10/5775 start of the 8th cycle that contains 2711 pages
+    // 15/10/5775 is 2094590 days from start
+    private static int[] getMasechetAndDaf(HebrewDate date)
+    {
+        int days =  date.getDaysFromStart() - 2094590;
+        if (days < 0)
+            return new int[]{};
+
+        int machzor = 8;
+        while (days >= 2711)
         {
-            if (sum + Shas[index].pages > daf)
-                break;
-            else
-                sum += Shas[index].pages;
+            machzor++;
+            days -= 2711;
         }
 
-        daf += 2;
+        int masechet = 0;
+        for(; days > Shas[masechet].pages; masechet++)
+        {
+            days -= Shas[masechet].pages;
+        }
 
-        DecimalFormat df = new DecimalFormat("#.###");
-        df.setRoundingMode(RoundingMode.CEILING);
-
-        return String.format("מחזור:%s - מסכת:%s דף:%s", df.format(++cycle), Shas[index].Name, getYearString(daf - sum));
+        return new int[]{machzor, masechet, days+2};
     }
+
 
     private enum Units {א,ב,ג,ד,ה,ו,ז,ח,ט}
     private enum Tens {י,כ,ל,מ,נ,ס,ע,פ,צ}
     private enum Hundreds {ק,ר,ש,ת,תק,תר,תש,תת,תתק}
-
-    private String getYearString(int page)
+    private static String getPageString(int page)
     {
         int hundreds = page / 100;
         int tens = (page - 100*hundreds)/10;

@@ -1,11 +1,21 @@
 package org.mobeho.calendar.cyclic;
 
+import org.mobeho.calendar.HebrewDate;
+
 // Base on http://www.sci.fi/~benefon/rscalc_cpp.html
 public class SunRiseAndSet
 {
     private static double SUN_RADIUS = 0.265D; // The sun radius in degrees
     private static double ATHMOSPHERIC_REFRACTION = 34D / 60D; // Atmosphere refraction degrees
     private static double RADs = Math.PI / 180D;
+
+    private static double ISRAEL_TIMEZONE = 2D;
+
+    public static String[] of(HebrewDate date, Location location)
+    {
+        double offset = ISRAEL_TIMEZONE + (SummerTime.isSummnertime(date) ? 1D: 0D);
+        return SunRiseAndSet.asString(offset, location.latitude, location.longitude, date.getChrisDayInYear());
+    }
 
     /**
      * @param timeZone Time zone
@@ -65,6 +75,23 @@ public class SunRiseAndSet
         int minutes = (int) (time *= 60);
         time -= minutes;
         int seconds = (int) (time *= 60);
-        return String.format("%02d:%02d:%02d", hour, minutes, seconds);
+        return String.format("%2d:%02d:%02d", hour, minutes, seconds);
     }
+
+    public enum Location
+    {
+        Tel_Aviv(32.1004629, 34.812675),
+        Modiin(31.897319, 35.008280),
+        Jerusalem(31.777974, 35.235640);
+
+        private double latitude;
+        private double longitude;
+
+        Location(double latitude, double longitude)
+        {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+    }
+
 }

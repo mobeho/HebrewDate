@@ -10,37 +10,43 @@ public class SummerTime
 {
     static public boolean isSummnertime(HebrewDate date)
     {
-        int[] range = getTange(date);
-        return (date.getDayInYear() < range[1] || date.getDayInYear() >= range[0]);
+        HebrewDate start = getStart(date);
+        HebrewDate end = getEnd(date);
+        return  (date.getChrisDayInYear() >= start.getChrisDayInYear() && date.getChrisDayInYear() <= end.getChrisDayInYear());
     }
 
-    static public String getInfo(HebrewDate date)
+    static public String getDayInfo(HebrewDate date)
     {
-        int[] range = getTange(date);
+        HebrewDate start = getStart(date);
+        HebrewDate end = getEnd(date);
 
-        // Without hours calculation
-        if (date.getDayInYear() == range[0])
-            return "תחילת שעון קיץ";
-        if (date.getDayInYear() == range[1])
-            return "סוף שעון קיץ";
-        if (date.getDayInYear() >= range[1] && date.getDayInYear() < range[0])
+        if (date.getChrisDayInYear() > 0 && date.getChrisDayInYear() < start.getChrisDayInYear() - 1)
             return "בשעון חורף";
-        else
+        if (date.getChrisDayInYear() == (start.getChrisDayInYear() - 1))
+            return "סוף שעון חורף";
+        else if (date.getChrisDayInYear() == start.getChrisDayInYear())
+            return "תחילת שעון קיץ";
+        else if (date.getChrisDayInYear() > start.getChrisDayInYear() && date.getChrisDayInYear() < end.getChrisDayInYear())
             return "בשעון קיץ";
+        else if (date.getChrisDayInYear() == end.getChrisDayInYear())
+            return "סוף שעון קיץ";
+        else if (date.getChrisDayInYear() == (end.getChrisDayInYear() + 1))
+            return "תחילת שעון חורף";
+        else
+            return "בשעון חורף";
     }
 
-    static private int[] getTange(HebrewDate date)
+    static public HebrewDate getStart(HebrewDate date)
     {
-        HebrewDate springDate = HebrewDate.ofChris(date.getChrisYear(), 3, 31);
         // Last friday before Mars 31
-        springDate.addDays(-(springDate.getDayOfWeak() + 1));
-        int start = springDate.getDayInYear();
+        HebrewDate springDate = HebrewDate.ofChris(date.getChrisYear(), 3, 31);
+        return springDate.addDays(-(springDate.getDayOfWeak() + 1));
+    }
 
-        HebrewDate fallDate = HebrewDate.ofChris(date.getChrisYear(), 10, 31);
+    static public HebrewDate getEnd(HebrewDate date)
+    {
         // Last Sunday before Oct 31
-        fallDate.addDays(-(fallDate.getDayOfWeak() - 1));
-        int end = fallDate.getDayInYear();
-
-        return new int[]{start, end};
+        HebrewDate fallDate = HebrewDate.ofChris(date.getChrisYear(), 10, 31);
+        return fallDate.addDays(-(fallDate.getDayOfWeak() - 1));
     }
 }
