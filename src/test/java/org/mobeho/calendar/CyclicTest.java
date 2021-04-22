@@ -84,7 +84,8 @@ public class CyclicTest
         for (; date.getDaysFromStart() < until.getDaysFromStart(); date.addDays(7))
         {
             String[] times = SunRiseAndSet.of(date, SunRiseAndSet.Location.Modiin);
-            System.out.println(date.toString() + ": " + times[0] + " " + times[1]);
+            double[] numbers = SunRiseAndSet.as(date, SunRiseAndSet.Location.Modiin);
+            System.out.println(date.toString() + ": " + times[0] + " " + times[1] + String.format(" [%.3f - %.3f]", numbers[0], numbers[1] ));
         }
     }
 }

@@ -36,7 +36,6 @@ There are many methods you can use to get calendar information. Here few of them
     assertEquals(53, date.getChrisNumberOfWeeks());  
   
     assertEquals("שפטים", date.getShabatName());  
-    assertEquals("[48, 0]", Arrays.toString(date.getShabatIndexes()));  
   
     assertEquals("התשלא סימן:הכז, מחזור:12/302, שעת מולד:22:947(16:52), חודשים:12, ימים:354", date.toYearString());  
 

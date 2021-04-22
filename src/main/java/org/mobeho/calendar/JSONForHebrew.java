@@ -1,7 +1,8 @@
 package org.mobeho.calendar;
 
-import org.mobeho.calendar.hilchaty.Shabbat;
-import org.mobeho.calendar.hilchaty.YearType;
+import org.mobeho.calendar.hilchati.weak.Shabat;
+import org.mobeho.calendar.hilchati.weak.Parasha;
+import org.mobeho.calendar.calendar.YearType;
 
 public class JSONForHebrew
 {
@@ -114,7 +115,7 @@ public class JSONForHebrew
     {
         HebrewDate temp = HebrewDate.of(shana, 1,  1);
         YearType type = temp.getYearType();
-        int bereshit = Shabbat.getFirstShabatDayInYear(type);
+        int bereshit = getBereshitDayInYear(type);
         temp.addDays(bereshit);
         StringBuilder builder = new StringBuilder("{\"list\":[");
 
@@ -123,7 +124,7 @@ public class JSONForHebrew
             builder
                 .append("{")
                 .append("\"index\":").append((day - bereshit) / 7 + 1)
-                .append(",\"name\":").append("\"").append(Shabbat.getShabatName(type, day)).append("\"");
+                .append(",\"name\":").append("\"").append(Parasha.toString(Shabat.getShabat(type, day))).append("\"");
             if ((mask & 1) > 0)
                 builder.append(",\"dayInYear\":").append(day);
             if ((mask & 2) > 0)
@@ -136,4 +137,10 @@ public class JSONForHebrew
         builder.replace(builder.length() - 1, builder.length(), "]}");
         return builder.toString();
     }
+
+    private static int getBereshitDayInYear(YearType yearType)
+    {
+        return 29 - (yearType.getFirstDay() % 7);
+    }
+
 }

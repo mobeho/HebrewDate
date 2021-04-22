@@ -1,8 +1,7 @@
 package org.mobeho.calendar;
 
 import junit.framework.TestCase;
-import org.mobeho.calendar.hilchaty.HolyDay;
-import org.mobeho.calendar.hilchaty.Shabbat;
+import org.mobeho.calendar.hilchati.HolyDay;
 import org.mobeho.calendar.cyclic.SummerTime;
 import org.mobeho.calendar.cyclic.DafYomiBavli;
 import org.junit.Test;
@@ -24,10 +23,6 @@ public class CalendarTest
    @Test
    public void checkHebrewChris()
    {
-
-      HebrewDate date1 = HebrewDate.of("כח ניסן התשפא");
-      String s = date1.getShabatName();
-
       HebrewDate date = HebrewDate.of("ז אלול התשלא");
       assertEquals(LocalDate.of(1971, 8, 28), date.getLocalDate());
 
@@ -71,7 +66,7 @@ public class CalendarTest
       assertEquals(28, date.getChrisDay());
 
       assertEquals("שפטים", date.getShabatName());
-      assertEquals("[48, 0]", Arrays.toString(date.getShabatIndexes()));
+      assertEquals("שפטים", date.getParashaName()); // different in Shabatot with extra Torah books
 
       assertEquals("", date.getHolidayName());
       assertEquals("יום שבת", date.getDayOfWeakString());
@@ -176,8 +171,8 @@ public class CalendarTest
 
          if (hebrew.getDayOfWeak() == 7)
          {
-            String holiday = HolyDay.getInfo(hebrew.getYearType(), hebrew.getDayInYear());
-            String shabat = Shabbat.getShabatName(hebrew.getYearType(), hebrew.getDayInYear());
+            String holiday = HolyDay.getName(hebrew.getYearType(), hebrew.getDayInYear());
+            String shabat = hebrew.getShabatName();
             if (holiday.length() > 0)
                System.out.print(String.format("|%15s ", holiday));
              else

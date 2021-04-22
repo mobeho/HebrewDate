@@ -1,6 +1,11 @@
 package org.mobeho.calendar;
 
-import org.mobeho.calendar.hilchaty.*;
+import org.mobeho.calendar.calendar.*;
+import org.mobeho.calendar.hilchati.HolyDay;
+import org.mobeho.calendar.hilchati.SfiratHaomer;
+import org.mobeho.calendar.hilchati.weak.Shabat;
+import org.mobeho.calendar.hilchati.weak.Parasha;
+
 import java.time.LocalDate;
 
 /// <Description>
@@ -50,6 +55,15 @@ public class HebrewDate
         return new HebrewDate(year, month, day);
     }
 
+    public static HebrewDate of(int year, int dayInYear)
+    {
+        HebrewDate me = new HebrewDate();
+        me.hebrew.set(year, 1, 1);
+        me.hebrew.addDays(dayInYear - 1);
+        me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
+        return me;
+    }
+
     public static HebrewDate ofChris(int year, int month, int day)
     {
         HebrewDate me = new HebrewDate(false);
@@ -75,12 +89,18 @@ public class HebrewDate
         return me;
     }
 
-    public static HebrewDate ofParasha(int year, int parasha, boolean secondPhase)
+    public static HebrewDate of(int year, Parasha parasha)
     {
-        HebrewDate me = new HebrewDate(year >= 5660 && parasha >= 15);
+        return HebrewDate.of(year, parasha, false);
+    }
+
+    public static HebrewDate of(int year, Parasha parasha, boolean secondPhase)
+    {
+        // Condition = Is after 1900/01/01
+        HebrewDate me = new HebrewDate(year >= 5660 && parasha.index >= Parasha.בא.index);
 
         me.hebrew.set(year, 1, 1);
-        int days = Shabbat.getDayInYear(me.getYearType(), parasha, secondPhase);
+        int days = Shabat.getDayInYear(me.getYearType(), parasha, secondPhase);
         if (days == -1)
             return null;
 
@@ -160,27 +180,24 @@ public class HebrewDate
 
     public String getHolidayName()
     {
-        return HolyDay.getInfo(this.hebrew.getYearType(), this.hebrew.getDayInYear());
+        return HolyDay.getName(this.hebrew.getYearType(), this.hebrew.getDayInYear());
     }
 
     public String getShabatName()
     {
-        return Shabbat.getShabatName(this.hebrew.getYearType(), this.hebrew.getDayInYear());
+        return Parasha.toString(Shabat.getShabat(this.hebrew.getYearType(), this.hebrew.getDayInYear()));
     }
 
-    public int[] getShabatIndexes()
+    public String getParashaName()
     {
-        return Shabbat.getShabatIndexes(this.hebrew.getYearType(), this.hebrew.getDayInYear());
-    }
+        Parasha[] parashot = Shabat.getShabat(this.hebrew.getYearType(), this.hebrew.getDayInYear());
+        if (parashot[0] == null)
+            return "";
 
-    public static String getShabatName(int[] indexes)
-    {
-        return Shabbat.getShabatName(indexes);
-    }
+        if (parashot.length > 1 && parashot[1].isOrdered())
+            return parashot[0].toString() + " " + parashot[1].toString();
 
-    public static int[] getShabatIndexes(String shabat)
-    {
-        return Shabbat.getShabatIndexes(shabat);
+        return parashot[0].toString();
     }
 
     public static String[] getDaysOfWeakString()
@@ -190,7 +207,7 @@ public class HebrewDate
 
     public int getLastShabatDayInYear()
     {
-        return Shabbat.getLastShabatDayInYear(this.hebrew.getYearType());
+        return Shabat.getLastShabatDayInYear(this.hebrew.getYearType());
     }
 
     public String toShortString()

@@ -17,6 +17,12 @@ public class SunRiseAndSet
         return SunRiseAndSet.asString(offset, location.latitude, location.longitude, date.getChrisDayInYear());
     }
 
+    public static double[] as(HebrewDate date, Location location)
+    {
+        double offset = ISRAEL_TIMEZONE + (SummerTime.isSummnertime(date) ? 1D: 0D);
+        return asNumbers(offset, location.latitude, location.longitude, date.getChrisDayInYear());
+    }
+
     /**
      * @param timeZone Time zone
      * @param latitude + North
