@@ -188,6 +188,11 @@ public class HebrewDate
         return Parasha.toString(Shabat.getShabat(this.hebrew.getYearType(), this.hebrew.getDayInYear()));
     }
 
+    public Parasha[] getShabat()
+    {
+        return Shabat.getShabat(this.hebrew.getYearType(), this.hebrew.getDayInYear());
+    }
+
     public String getParashaName()
     {
         Parasha[] parashot = Shabat.getShabat(this.hebrew.getYearType(), this.hebrew.getDayInYear());
@@ -198,6 +203,16 @@ public class HebrewDate
             return parashot[0].toString() + " " + parashot[1].toString();
 
         return parashot[0].toString();
+    }
+
+    public Parasha[] getParasha()
+    {
+        Parasha[] parashot = Shabat.getShabat(this.hebrew.getYearType(), this.hebrew.getDayInYear());
+
+        if (parashot.length > 1 && !parashot[1].isOrdered())
+            parashot[1] = null;
+
+        return parashot;
     }
 
     public static String[] getDaysOfWeakString()
