@@ -10,8 +10,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 /// <Description>
@@ -38,6 +37,8 @@ public class CalendarTest
 
       date = HebrewDate.ofChris(2021, 1, 1);
       assertEquals(HebrewDate.of("יז טבת התשפא"), date);
+
+      assertEquals(HebrewDate.of("ל כסלו התשפא"), HebrewDate.of("כט כסלו התשפא"));
    }
 
    @Test

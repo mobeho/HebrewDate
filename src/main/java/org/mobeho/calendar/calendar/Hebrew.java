@@ -98,7 +98,7 @@ public class Hebrew extends Year
         return true;
     }
 
-    public void set(int year, int month, int day)
+    public boolean set(int year, int month, int day)
     {
         if (year < getYear() || (year == getYear() && month < getMonth()) || (year == getYear() && month == getMonth() && day < getDayInMonth()))
         {
@@ -132,6 +132,8 @@ public class Hebrew extends Year
         {
             addDays(1);  // #6: 01/03/5783 -> 15/03/5783 must do after #5
         }
+
+        return getDayInMonth() == day && getMonth() == month && getYear() == year;
     }
 
     public void today()
@@ -162,8 +164,7 @@ public class Hebrew extends Year
         if (year == -1)
             return false;
 
-        set(year, monthAndDay[0], monthAndDay[1]);
-        return true;
+        return set(year, monthAndDay[0], monthAndDay[1]);
     }
 
     public static int compare(Hebrew hebrewDate1, Hebrew hebrewDate2)

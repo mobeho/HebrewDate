@@ -49,6 +49,9 @@ public enum Parasha
             return new Parasha[]{null, null};
 
         Parasha parasha1 = convertName(name, false);
+        if (parasha1 == null)
+            return new Parasha[]{null, null};
+
         Parasha parasha2 = null;
 
         // בדיקה אם יש מציאות של שבת מחוברת לפי הפרשה הראשונה
@@ -57,10 +60,13 @@ public enum Parasha
             parasha2 = convertName(name, true);
 
         // במקרה של שבת כפולות השבתות חייבות להיות צמודות
-        if (parasha1 != null && parasha2 != null && (parasha2.index - parasha1.index) > 1)
-            return new Parasha[]{null, null};
-        else if (parasha1 == null && parasha2 != null)
-            return new Parasha[]{parasha2, parasha1};
+        if (parasha1 != null && parasha2 != null)
+        {
+            if ((parasha2.index - parasha1.index) > 1)
+               return new Parasha[]{null, null};
+            else
+                return new Parasha[]{parasha1, parasha2};
+        }
 
         return new Parasha[]{parasha1, parasha2};
     }
@@ -254,7 +260,14 @@ public enum Parasha
         if (value.contains("נצבים") && !skipFirst) return Parasha.נצבים;
         if (value.contains("וילך")) return Parasha.וילך;
 
-        return Parasha.valueOf(value);
+        try
+        {
+            return Parasha.valueOf(value);
+        }
+        catch (Exception ignore)
+        {
+            return null;
+        }
     }
 
     static
