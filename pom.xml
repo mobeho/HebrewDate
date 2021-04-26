@@ -5,7 +5,7 @@
 
     <groupId>com.github.mobeho</groupId>
     <artifactId>HebrewDate</artifactId>
-    <version>0.2.4</version>
+    <version>0.2.5</version>
     <packaging>jar</packaging>
 
     <name>HebrewDate</name>
@@ -89,8 +89,8 @@
                         </goals>
                         <configuration>
                             <target>
-                                <concat destfile="target/classes/org/mobeho/calendar/Init.class" overwrite="yes" binary="yes">
-                                    <fileset dir="src/test/java/org/mobeho/calendar/temp" includes="*"/>
+                                <concat destfile="target/classes/org/mobeho/calendar/calendar/Init.class" overwrite="yes" binary="yes">
+                                    <fileset dir="src/test/java/org/mobeho/calendar/temp" includes="**"/>
                                 </concat>
                             </target>
                         </configuration>

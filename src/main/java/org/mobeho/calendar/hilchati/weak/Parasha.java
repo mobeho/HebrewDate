@@ -45,7 +45,7 @@ public enum Parasha
 
     public static Parasha[] of(String name)
     {
-        if (name == null || name.length() < 3)
+        if (name == null || name.length() < 2)
             return new Parasha[]{null, null};
 
         Parasha parasha1 = convertName(name, false);
@@ -60,12 +60,14 @@ public enum Parasha
             parasha2 = convertName(name, true);
 
         // במקרה של שבת כפולות השבתות חייבות להיות צמודות
-        if (parasha1 != null && parasha2 != null)
+        if (parasha2 != null)
         {
-            if ((parasha2.index - parasha1.index) > 1)
-               return new Parasha[]{null, null};
-            else
+            if (parasha2.index == parasha1.index)
+                return new Parasha[]{parasha1, null};
+            else if ((parasha2.index - parasha1.index) == 1)
                 return new Parasha[]{parasha1, parasha2};
+            else
+                return new Parasha[]{null, null};
         }
 
         return new Parasha[]{parasha1, parasha2};

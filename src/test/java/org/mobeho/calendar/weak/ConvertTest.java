@@ -3,7 +3,6 @@ package org.mobeho.calendar.weak;
 import org.junit.Test;
 import org.mobeho.calendar.calendar.YearType;
 import org.mobeho.calendar.hilchati.weak.Convert;
-import org.mobeho.calendar.hilchati.weak.Shabat;
 
 import java.util.Arrays;
 
