@@ -144,14 +144,14 @@ public enum Parasha
         value = value.replace("וחנוכה","");
         value = value.replace("חנוכה","");
         value = value.replace("פורים מוקפין","");
-        value = value.replace(" וערב ראש חודש","");
-        value = value.replace(" ערב ראש חודש","");
-        value = value.replace(" וערב ראש חדש","");
-        value = value.replace(" ערב ראש חדש","");
-        value = value.replace(" וערב ר\"ח","");
-        value = value.replace(" ערב ר\"ח","");
-        value = value.replace(" וער\"ח","");
-        value = value.replace(" ער\"ח","");
+        value = value.replace("וערב ראש חודש","");
+        value = value.replace("ערב ראש חודש","");
+        value = value.replace("וערב ראש חדש","");
+        value = value.replace("ערב ראש חדש","");
+        value = value.replace("וערב ר\"ח","");
+        value = value.replace("ערב ר\"ח","");
+        value = value.replace("וער\"ח","");
+        value = value.replace("ער\"ח","");
         value = value.replace("וראש חודש","");
         value = value.replace("ראש חודש","");
         value = value.replace("וראש חדש","");
@@ -159,9 +159,10 @@ public enum Parasha
         value = value.replace("'"," ");
         value = value.replace("-"," ");
         value = value.replace("_"," ");
-        value = value.replace("  "," ");
         value = value.replace("(","");
         value = value.replace(")","");
+        value = value.replace("  "," ");
+        value = value.replace("  "," ");
         value = value.trim();
 
         if (value.contains("שבת וראש השנה")) return Parasha.שבת_וראש_השנה;
@@ -193,6 +194,8 @@ public enum Parasha
         if (value.contains("שבת חנוכה ב")) return Parasha.חנוכה_ב;
         if (value.contains("שבת חנוכה")) return Parasha.חנוכה;
 
+        if (value.contains("כי תבוא")) return Parasha.כי_תבוא;
+        if (value.contains("כי תבא")) return Parasha.כי_תבוא;
         if (value.contains("בוא")) return Parasha.בא;
         if (value.contains("מישפטים")) return Parasha.משפטים;
         if (value.contains("תצווה")) return Parasha.תצוה;
@@ -237,17 +240,20 @@ public enum Parasha
         if (value.contains("בהר") && !skipFirst) return Parasha.בהר;
         if (value.contains("בחקתי")) return Parasha.בחקתי;
         if (value.contains("בחוקתי")) return Parasha.בחקתי;
+        if (value.contains("בחקותי")) return Parasha.בחקתי;
         if (value.contains("בחוקותי")) return Parasha.בחקתי;
 
         if (value.contains("נשוא")) return Parasha.נשא;
         if (value.contains("בהעלותך")) return Parasha.בהעלתך;
+        if (value.contains("בשלח")) return Parasha.בשלח;
+        if (value.contains("וישלח")) return Parasha.וישלח;
         if (value.contains("שלח לך")) return Parasha.שלח_לך;
         if (value.contains("שלח")) return Parasha.שלח_לך;
         if (value.contains("קורח")) return Parasha.קרח;
 
         if (value.contains("חוקת") && !skipFirst) return Parasha.חקת;
         if (value.contains("חקת") && !skipFirst) return Parasha.חקת;
-        if (value.contains("בלק")) return Parasha.חקת;
+        if (value.contains("בלק")) return Parasha.בלק;
 
         if (value.contains("פנחס")) return Parasha.פינחס;
 
@@ -256,7 +262,6 @@ public enum Parasha
 
         if (value.contains("שופטים")) return Parasha.שפטים;
         if (value.contains("כי תצא")) return Parasha.כי_תצא;
-        if (value.contains("כי תבוא")) return Parasha.כי_תבוא;
 
         if (value.contains("ניצבים") && !skipFirst) return Parasha.נצבים;
         if (value.contains("נצבים") && !skipFirst) return Parasha.נצבים;

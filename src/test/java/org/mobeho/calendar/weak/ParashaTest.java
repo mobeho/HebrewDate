@@ -13,6 +13,8 @@ public class ParashaTest
     @Test
     public void checkParashaOf()
     {
+        assertNull(of("ז אלול")[0]);
+
         assertEquals(Parasha.of("שבת וראש השנה")[0], Parasha.שבת_וראש_השנה);
         assertEquals(Parasha.of("שבת ראש השנה")[0], Parasha.שבת_וראש_השנה);
         assertEquals(Parasha.of("שבת ויום כיפור")[0], Parasha.שבת_ויום_כיפור);
@@ -30,26 +32,6 @@ public class ParashaTest
         assertEquals(Parasha.of("שבת ושמיני עצרת")[0], Parasha.שבת_ושמיני_עצרת);
         assertEquals(Parasha.of("שבת שמיני עצרת")[0], Parasha.שבת_ושמיני_עצרת);
 
-        assertEquals(Parasha.of("מקץ - חנוכה")[0], מקץ);
-        assertEquals(Parasha.of("מקץ - וחנוכה")[0], מקץ);
-        assertEquals(Parasha.of("מקץ וחנוכה")[0], מקץ);
-        assertEquals(Parasha.of("מקץ וחנוכה")[0], מקץ);
-        assertEquals(Parasha.of("ויגש - חנוכה")[0], ויגש);
-        assertEquals(Parasha.of("ויגש - חנוכה ב")[0], ויגש);
-        assertEquals(Parasha.of("ויגש - חנוכה ב'")[0], ויגש);
-
-        assertEquals(Parasha.of("וארא - ראש חודש")[0], וארא);
-        assertEquals(Parasha.of("וארא ראש חודש")[0], וארא);
-        assertEquals(Parasha.of("וארא וראש חודש")[0], וארא);
-        assertEquals(Parasha.of("וארא (ראש חודש)")[0], וארא);
-
-        assertEquals(Parasha.of(" משפטים-שקלים")[0], Parasha.משפטים);
-        assertArrayEquals(Parasha.of("ויקהל-פקודי זכור"), new Parasha[]{ויקהל, פקודי});
-        assertEquals(Parasha.of(" צו פרה")[0], צו);
-        assertArrayEquals(Parasha.of("תזריע מצורע החודש"), new Parasha[]{תזריע, מצרע});
-        assertEquals(Parasha.of("ויגש וערב ראש חודש")[0], ויגש);
-        assertEquals(Parasha.of(" צו הגדול")[0], צו);
-
         assertEquals(Parasha.of("שבת ופסח")[0], Parasha.שבת_ופסח);
         assertEquals(Parasha.of("שבת פסח")[0], Parasha.שבת_ופסח);
         assertEquals(Parasha.of("שבת חול המועד פסח")[0], Parasha.שבת_חול_המועד_פסח);
@@ -64,12 +46,117 @@ public class ParashaTest
         assertEquals(Parasha.of("שבת_ופסח")[0], Parasha.שבת_ופסח);
         assertEquals(Parasha.of("שבת_ופסח")[0], Parasha.שבת_ופסח);
 
+        assertEquals(Parasha.of("בראשית")[0],בראשית);
+        assertEquals(Parasha.of("נח")[0],נח);
+        assertEquals(Parasha.of("לך לך")[0],לך_לך);
+        assertEquals(Parasha.of("לך_לך")[0],לך_לך);
+        assertEquals(Parasha.of("לך-לך")[0],לך_לך);
+        assertEquals(Parasha.of("וירא")[0],וירא);
+        assertEquals(Parasha.of("חיי שרה")[0],חיי_שרה);
+        assertEquals(Parasha.of("חיי_שרה")[0],חיי_שרה);
+        assertEquals(Parasha.of("חיי-שרה")[0],חיי_שרה);
+        assertEquals(Parasha.of("תולדות")[0],תולדות);
+        assertEquals(Parasha.of("ויצא")[0],ויצא);
+        assertEquals(Parasha.of("וישלח")[0],וישלח);
+        assertEquals(Parasha.of("וישב")[0],וישב);
+        assertEquals(Parasha.of("מקץ")[0],מקץ);
+        assertEquals(Parasha.of("מיקץ")[0],מקץ);
+        assertEquals(Parasha.of("מקץ - חנוכה")[0], מקץ);
+        assertEquals(Parasha.of("מקץ - וחנוכה")[0], מקץ);
+        assertEquals(Parasha.of("מקץ וחנוכה")[0], מקץ);
+        assertEquals(Parasha.of("מקץ וחנוכה")[0], מקץ);
+        assertEquals(Parasha.of("ויגש")[0],ויגש);
+        assertEquals(Parasha.of("ויגש - חנוכה")[0], ויגש);
+        assertEquals(Parasha.of("ויגש וערב ראש חודש")[0], ויגש);
+        assertEquals(Parasha.of("ויגש - חנוכה ב")[0], ויגש);
+        assertEquals(Parasha.of("ויגש - חנוכה ב'")[0], ויגש);
+        assertEquals(Parasha.of("ויחי")[0],ויחי);
+        assertEquals(Parasha.of("שמות")[0],שמות);
+        assertEquals(Parasha.of("וארא")[0],וארא);
+        assertEquals(Parasha.of("וארא - ראש חודש")[0], וארא);
+        assertEquals(Parasha.of("וארא ראש חודש")[0], וארא);
+        assertEquals(Parasha.of("וארא וראש חודש")[0], וארא);
+        assertEquals(Parasha.of("וארא (ראש חודש)")[0], וארא);
+        assertEquals(Parasha.of("וארא (ערב ראש חודש)")[0], וארא);
+        assertEquals(Parasha.of("וארא (וערב ראש חודש)")[0], וארא);
+        assertEquals(Parasha.of("בא")[0],בא);
+        assertEquals(Parasha.of("בוא")[0],בא);
+        assertEquals(Parasha.of("בשלח")[0],בשלח);
+        assertEquals(Parasha.of("בשלח (שירה)")[0], בשלח);
+        assertEquals(Parasha.of("יתרו")[0],יתרו);
+        assertEquals(Parasha.of("משפטים")[0],משפטים);
+        assertEquals(Parasha.of(" משפטים-שקלים")[0], Parasha.משפטים);
+        assertEquals(Parasha.of("תרומה")[0],תרומה);
+        assertEquals(Parasha.of("תצוה")[0],תצוה);
+        assertEquals(Parasha.of("תצווה")[0],תצוה);
+        assertEquals(Parasha.of("כי תשא")[0],כי_תשא);
+        assertEquals(Parasha.of("כי_תשא")[0],כי_תשא);
+        assertEquals(Parasha.of("כי-תשא")[0],כי_תשא);
+        assertEquals(Parasha.of("ויקהל")[0],ויקהל);
+        assertEquals(Parasha.of("פקודי")[0],פקודי);
+        assertArrayEquals(Parasha.of("ויקהל-פקודי"), new Parasha[]{ויקהל, פקודי});
+        assertArrayEquals(Parasha.of("ויקהל-פקודי זכור"), new Parasha[]{ויקהל, פקודי});
+        assertArrayEquals(Parasha.of("ויקהל פקודי"), new Parasha[]{ויקהל, פקודי});
+        assertEquals(Parasha.of("ויקרא")[0],ויקרא);
+        assertEquals(Parasha.of("צו")[0],צו);
+        assertEquals(Parasha.of(" צו פרה")[0], צו);
+        assertEquals(Parasha.of(" צו הגדול")[0], צו);
+        assertEquals(Parasha.of("שמיני")[0],שמיני);
+        assertEquals(Parasha.of("תזריע")[0],תזריע);
+        assertEquals(Parasha.of("מצורע")[0],מצרע);
+        assertEquals(Parasha.of("מצרע")[0],מצרע);
+        assertArrayEquals(Parasha.of("תזריע-מצורע"), new Parasha[]{תזריע, מצרע});
+        assertArrayEquals(Parasha.of("תזריע מצורע"), new Parasha[]{תזריע, מצרע});
+        assertArrayEquals(Parasha.of("תזריע מצורע החודש"), new Parasha[]{תזריע, מצרע});
+        assertEquals(Parasha.of("אחרי-מות")[0],אחרי_מות);
+        assertEquals(Parasha.of("אחרי_מות")[0],אחרי_מות);
+        assertEquals(Parasha.of("קדושים")[0],קדשים);
+        assertEquals(Parasha.of("קדשים")[0],קדשים);
         assertArrayEquals(Parasha.of("אחרי מות קדושים"), new Parasha[]{אחרי_מות, קדשים});
+        assertArrayEquals(Parasha.of("אחרי-מות קדושים"), new Parasha[]{אחרי_מות, קדשים});
+        assertEquals(Parasha.of("אמור")[0],אמר);
+        assertEquals(Parasha.of("אמר")[0],אמר);
+        assertEquals(Parasha.of("בהר")[0],בהר);
+        assertEquals(Parasha.of("בחקתי")[0],בחקתי);
+        assertEquals(Parasha.of("בחוקתי")[0],בחקתי);
+        assertEquals(Parasha.of("בחקותי")[0],בחקתי);
+        assertEquals(Parasha.of("בחוקותי")[0],בחקתי);
         assertArrayEquals(Parasha.of("בהר בחוקותי") , new Parasha[]{בהר, בחקתי});
+        assertEquals(Parasha.of("במדבר")[0],במדבר);
+        assertEquals(Parasha.of("נשא")[0],נשא);
+        assertEquals(Parasha.of("נשוא")[0],נשא);
+        assertEquals(Parasha.of("בהעלתך")[0],בהעלתך);
+        assertEquals(Parasha.of("בהעלותך")[0],בהעלתך);
+        assertEquals(Parasha.of("שלח_לך")[0],שלח_לך);
+        assertEquals(Parasha.of("שלח-לך")[0],שלח_לך);
+        assertEquals(Parasha.of("שלח")[0],שלח_לך);
+        assertEquals(Parasha.of("קורח")[0],קרח);
+        assertEquals(Parasha.of("קרח")[0],קרח);
+        assertEquals(Parasha.of("חוקת")[0],חקת);
+        assertEquals(Parasha.of("חקת")[0],חקת);
+        assertEquals(Parasha.of("בלק")[0],בלק);
+        assertEquals(Parasha.of("פנחס")[0],פינחס);
+        assertEquals(Parasha.of("פינחס")[0],פינחס);
+        assertEquals(Parasha.of("מטות")[0],מטות);
+        assertEquals(Parasha.of("מסעי")[0],מסעי);
         assertArrayEquals(Parasha.of("מטות מסעי"), new Parasha[]{מטות, מסעי});
+        assertEquals(Parasha.of("דברים")[0],דברים);
+        assertEquals(Parasha.of("ואתחנן")[0],ואתחנן);
+        assertEquals(Parasha.of("עקב")[0],עקב);
+        assertEquals(Parasha.of("ראה")[0],ראה);
+        assertEquals(Parasha.of("שפטים")[0],שפטים);
+        assertEquals(Parasha.of("שופטים")[0],שפטים);
+        assertEquals(Parasha.of("כי_תצא")[0],כי_תצא);
+        assertEquals(Parasha.of("כי-תצא")[0],כי_תצא);
+        assertEquals(Parasha.of("כי תצא")[0],כי_תצא);
+        assertEquals(Parasha.of("כי_תבוא")[0],כי_תבוא);
+        assertEquals(Parasha.of("כי-תבוא")[0],כי_תבוא);
+        assertEquals(Parasha.of("כי תבוא")[0],כי_תבוא);
+        assertEquals(Parasha.of("נצבים")[0],נצבים);
+        assertEquals(Parasha.of("ניצבים")[0],נצבים);
+        assertEquals(Parasha.of("וילך")[0],וילך);
         assertArrayEquals(Parasha.of("ניצבים וילך"), new Parasha[]{נצבים, וילך});
-
-        assertNull(of("ז אלול")[0]);
+        assertEquals(Parasha.of("האזינו")[0],האזינו);
     }
 
     @Test
