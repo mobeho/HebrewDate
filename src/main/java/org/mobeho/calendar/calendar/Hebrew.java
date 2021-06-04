@@ -98,7 +98,7 @@ public class Hebrew extends Year
         return true;
     }
 
-    public boolean set(int year, int month, int day)
+    public boolean set(int year, int month, int day, boolean force)
     {
         if (year < getYear() || (year == getYear() && month < getMonth()) || (year == getYear() && month == getMonth() && day < getDayInMonth()))
         {
@@ -133,6 +133,9 @@ public class Hebrew extends Year
             addDays(1);  // #6: 01/03/5783 -> 15/03/5783 must do after #5
         }
 
+        if (force)
+            return true;
+
         return getDayInMonth() == day && getMonth() == month && getYear() == year;
     }
 
@@ -142,16 +145,22 @@ public class Hebrew extends Year
         // 25556 days from 01/01/1900 until 01/01/1970
         addDays(25567);
 
+        // It is intentionally not in doubles so so that it was accurate
         long seconds = System.currentTimeMillis() / 1000;
         long minutes = seconds / 60;
         long hours = minutes / 60;
         int days = (int) (hours + 2) / 24; /* + getCurrentZoneOffset()*/
 
-        addDays(days);
+        addDays((int)Math.round(days));
     }
 
     public boolean of(String taarich)
     {
+        int first = taarich.indexOf(" ");
+        int second = taarich.indexOf(" ", first);
+        if (first < 0 || second < 0)
+            return false;
+
         Scanner scanner = new Scanner(taarich);
         scanner.useDelimiter(" ");
 
@@ -164,7 +173,29 @@ public class Hebrew extends Year
         if (year == -1)
             return false;
 
-        return set(year, monthAndDay[0], monthAndDay[1]);
+        if (YearType.getIfLeapYear(year) && monthAndDay[0] > 5)
+            monthAndDay[0] = monthAndDay[0] + 1 - monthAndDay[2];
+
+        return set(year, monthAndDay[0], monthAndDay[1], false);
+    }
+
+    public boolean of(int year, String taarich, boolean force)
+    {
+        Scanner scanner = new Scanner(taarich);
+        scanner.useDelimiter(" ");
+
+        String monthAndDayString = scanner.next() + " " + scanner.next();
+        int[] monthAndDay = convertMonthAndDay(monthAndDayString);
+        if (monthAndDay[0] == -1)
+            return false;
+
+        if (YearType.getIfLeapYear(year) && monthAndDay[0] > 5)
+            monthAndDay[0] = monthAndDay[0] + 1 - monthAndDay[2];
+
+        if (!force && !YearType.getIfLeapYear(year) && monthAndDay[2] == 1)
+            return false;
+
+        return set(year, monthAndDay[0], monthAndDay[1], force);
     }
 
     public static int compare(Hebrew hebrewDate1, Hebrew hebrewDate2)
@@ -363,13 +394,8 @@ public class Hebrew extends Year
     {
         try
         {
-            Scanner scanner = new Scanner(checkThis);
-            scanner.useDelimiter(" ");
-
-            int dayIndex = MONTH_DAY.valueOf(scanner.next()).ordinal() + 1;
-            int monthIndex = MONTHS.valueOf(scanner.next()).ordinal() + 1 + ((getNumberOfMonths() == 13) ? 1 : 0);
-
-            return (this.dayInMonth == dayIndex && this.month == monthIndex);
+            int[] monthDay = convertMonthAndDay(checkThis);
+            return (this.month == monthDay[0] && this.dayInMonth == monthDay[1]);
         }
         catch (Exception ex)
         {

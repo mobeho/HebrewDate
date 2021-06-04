@@ -31,14 +31,14 @@ public class CalendarTest
       date = HebrewDate.of("א אדר-א התשפא");
       assertEquals(LocalDate.of(2021, 2, 13), date.getLocalDate());
 
-      LocalDate localDate = LocalDate.of(2020, 11, 17);
-      date = HebrewDate.of(localDate);
+      date = HebrewDate.of(LocalDate.of(2020, 11, 17));
       assertEquals(HebrewDate.of("א כסלו התשפא"), date);
+
+      date = HebrewDate.of(LocalDate.of(2020, 2, 29));
+      assertEquals(HebrewDate.of("ד אדר התשפ"), date);
 
       date = HebrewDate.ofChris(2021, 1, 1);
       assertEquals(HebrewDate.of("יז טבת התשפא"), date);
-
-      assertEquals(HebrewDate.of("ל כסלו התשפא"), HebrewDate.of("כט כסלו התשפא"));
    }
 
    @Test
@@ -98,11 +98,13 @@ public class CalendarTest
       assertEquals("[12, 7, 0]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אלול")));
       assertEquals("[6, 7, 0]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אדר")));
 //    Illegible ->  assertEquals("[7, 7, 1]", Arrays.toString(Hebrew.convertMonthAndDay("ז אדר-ב")));
+
       assertEquals("[6, 7, 1]", Arrays.toString(HebrewDate.convertMonthAndDay("ז אדר-א")));
       assertEquals("ז אלול", HebrewDate.convertMonthAndDay(12, 7, false));
       assertEquals("ז אדר", HebrewDate.convertMonthAndDay(6, 7, false));
       assertEquals("ז ניסן", HebrewDate.convertMonthAndDay(7, 7, false));
       assertEquals("ז אדר-א", HebrewDate.convertMonthAndDay(6, 7, true));
+
 //    Illegible ->  assertEquals("ז ניסן", Hebrew.convertMonthAndDay(7, 7, true));
       assertEquals("יום שבת", HebrewDate.convertDayOfWeek(7));
       assertEquals(0, HebrewDate.compare(HebrewDate.of(5731, 12, 7), HebrewDate.ofChris(1971, 8, 28)));
@@ -114,6 +116,15 @@ public class CalendarTest
       assertEquals(-1, HebrewDate.compare(HebrewDate.of(5731, 12, 7), HebrewDate.ofChris(1972, 8, 28)));
 
       assertEquals("[ראשון, שני, שלישי, רביעי, חמישי, שישי, שבת]", Arrays.toString(HebrewDate.getDaysOfWeakString()));
+
+      assertEquals(HebrewDate.of("כט אדר התשפ"), HebrewDate.of(5780, "ל אדר-א", true));
+      assertNull(HebrewDate.of(5780, "ל אדר-א", false));
+      assertEquals(HebrewDate.of("כט אדר התשפ"),HebrewDate.of(5780, "כט אדר-א", true));
+      assertEquals(HebrewDate.of("כט אדר התשפא"),HebrewDate.of("כט אדר-א התשפא"));
+      assertEquals(HebrewDate.of("א אלול התשפ"), HebrewDate.of(5780, 14, 1)); // force = false
+      assertEquals(HebrewDate.of("ל שבט התשפ"), HebrewDate.of(5780, 5, 31)); // force = false
+      assertEquals(HebrewDate.of("ל אדר-א התשפב"), HebrewDate.of(5782, "ל אדר-א", false));
+      assertEquals(HebrewDate.of("ל אדר-א התשפב"), HebrewDate.of(5782, "ל אדר-א", true));
 
    }
 

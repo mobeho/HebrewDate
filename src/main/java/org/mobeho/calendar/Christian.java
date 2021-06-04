@@ -58,8 +58,14 @@ public class Christian
         return true;
     }
 
-    public void set(int year, int month, int day)
+    public boolean set(int year, int month, int day)
     {
+        if (month < 1 || month > 12 || day < 1 || day > 31)
+            return false;
+
+        if (!getIfLeapYear(year) && month == 2 && day > 28)
+            return false;
+
         if (year < getYear() || (year == getYear() && month < getMonth()) || (year == getYear() && month == getMonth() && day < getDay()))
         {
             if (year >= 1900 && month >= 1)
@@ -72,7 +78,12 @@ public class Christian
         while (getMonth() != 1 && getYear() < year) addMonths(1);
         while (getYear() < year) addYears(1);
         while (getMonth() < month && getMonth() < getNumberOfMonths()) addMonths(1);
+
+        if (day > getNumberDaysInMonth())
+            return false;
+
         while (getDay() < day && getDay() < getNumberDaysInMonth()) addDays(1);
+        return true;
     }
 
     public boolean isLeapYear()

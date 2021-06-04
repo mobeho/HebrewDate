@@ -22,8 +22,10 @@ public class ParashaTest
         assertEquals(Parasha.of("שבת כיפור")[0], Parasha.שבת_ויום_כיפור);
         assertEquals(Parasha.of("שבת וסוכות")[0], Parasha.שבת_וסוכות);
         assertEquals(Parasha.of("שבת סוכות")[0], Parasha.שבת_וסוכות);
+        assertEquals(Parasha.of("סוכות ושבת")[0], Parasha.שבת_וסוכות);
         assertEquals(Parasha.of("שבת בסוכות")[0], Parasha.שבת_חול_המועד_סוכות);
         assertEquals(Parasha.of("שבת חול המועד סוכות")[0], Parasha.שבת_חול_המועד_סוכות);
+        assertEquals(Parasha.of("חול המועד סוכות ושבת")[0], Parasha.שבת_חול_המועד_סוכות);
         assertEquals(Parasha.of("שבת וחול המועד סוכות")[0], Parasha.שבת_חול_המועד_סוכות);
         assertEquals(Parasha.of("שבת חולה" + "\"" + "מ סוכות")[0], Parasha.שבת_חול_המועד_סוכות);
         assertEquals(Parasha.of("שבת חול" + "\"" + "מ סוכות")[0], Parasha.שבת_חול_המועד_סוכות);
@@ -31,8 +33,10 @@ public class ParashaTest
         assertEquals(Parasha.of("חול" + "\"" + "מ סוכות")[0], Parasha.שבת_חול_המועד_סוכות);
         assertEquals(Parasha.of("שבת ושמיני עצרת")[0], Parasha.שבת_ושמיני_עצרת);
         assertEquals(Parasha.of("שבת שמיני עצרת")[0], Parasha.שבת_ושמיני_עצרת);
+        assertEquals(Parasha.of("שמיני עצרת ושבת")[0], Parasha.שבת_ושמיני_עצרת);
 
         assertEquals(Parasha.of("שבת ופסח")[0], Parasha.שבת_ופסח);
+        assertEquals(Parasha.of("פסח ושבת")[0], Parasha.שבת_ופסח);
         assertEquals(Parasha.of("שבת פסח")[0], Parasha.שבת_ופסח);
         assertEquals(Parasha.of("שבת חול המועד פסח")[0], Parasha.שבת_חול_המועד_פסח);
         assertEquals(Parasha.of("שבת וחול המועד פסח")[0], Parasha.שבת_חול_המועד_פסח);

@@ -166,23 +166,29 @@ public enum Parasha
         value = value.trim();
 
         if (value.contains("שבת וראש השנה")) return Parasha.שבת_וראש_השנה;
+        if (value.contains("ראש השנה ושבת")) return Parasha.שבת_וראש_השנה;
         if (value.contains("שבת ראש השנה")) return Parasha.שבת_וראש_השנה;
         if (value.contains("שבת ויום כיפור")) return Parasha.שבת_ויום_כיפור;
+        if (value.contains("יום כיפור ושבת")) return Parasha.שבת_ויום_כיפור;
         if (value.contains("שבת יום כיפור")) return Parasha.שבת_ויום_כיפור;
         if (value.contains("שבת וכיפור")) return Parasha.שבת_ויום_כיפור;
         if (value.contains("שבת כיפור")) return Parasha.שבת_ויום_כיפור;
 
-        if (value.contains("שבת וסוכות")) return Parasha.שבת_וסוכות;
-        if (value.contains("שבת סוכות")) return Parasha.שבת_וסוכות;
-
-        if (value.contains("שבת בסוכות")) return Parasha.שבת_חול_המועד_סוכות;
         if (value.contains("שבת וחול המועד סוכות")) return Parasha.שבת_חול_המועד_סוכות;
         if (value.contains("שבת חול המועד סוכות")) return Parasha.שבת_חול_המועד_סוכות;
+        if (value.contains("חול המועד סוכות ושבת")) return Parasha.שבת_חול_המועד_סוכות;
         if (value.contains("שבת חולה" + "\"" + "מ סוכות")) return Parasha.שבת_חול_המועד_סוכות;
         if (value.contains("שבת חול" + "\"" + "מ סוכות")) return Parasha.שבת_חול_המועד_סוכות;
         if (value.contains("חול" + "\"" + "מ סוכות")) return Parasha.שבת_חול_המועד_סוכות;
+        if (value.contains("חול" + "\"" + "מ סוכות ושבת")) return Parasha.שבת_חול_המועד_סוכות;
+
+        if (value.contains("שבת וסוכות")) return Parasha.שבת_וסוכות;
+        if (value.contains("סוכות ושבת")) return Parasha.שבת_וסוכות;
+        if (value.contains("שבת סוכות")) return Parasha.שבת_וסוכות;
+        if (value.contains("שבת בסוכות")) return Parasha.שבת_חול_המועד_סוכות;
 
         if (value.contains("שבת ושמיני עצרת")) return Parasha.שבת_ושמיני_עצרת;
+        if (value.contains("שמיני עצרת ושבת")) return Parasha.שבת_ושמיני_עצרת;
         if (value.contains("שבת שמיני עצרת")) return Parasha.שבת_ושמיני_עצרת;
 
         if (value.contains("נוח")) return Parasha.נח;
@@ -193,6 +199,7 @@ public enum Parasha
         if (value.contains("שבת חנוכה א")) return Parasha.חנוכה;
         if (value.contains("שבת חנוכה ב")) return Parasha.חנוכה_ב;
         if (value.contains("שבת חנוכה")) return Parasha.חנוכה;
+        if (value.contains("חנוכה ושבת")) return Parasha.חנוכה;
 
         if (value.contains("כי תבוא")) return Parasha.כי_תבוא;
         if (value.contains("כי תבא")) return Parasha.כי_תבוא;
@@ -205,17 +212,21 @@ public enum Parasha
         if (value.contains("ויקהל") && !skipFirst) return Parasha.ויקהל;
         if (value.contains("פקודי")) return Parasha.פקודי;
 
-        if (value.contains("שבת ופסח")) return Parasha.שבת_ופסח;
-        if (value.contains("שבת פסח")) return Parasha.שבת_ופסח;
-
-        if (value.contains("שבת בפסח")) return Parasha.שבת_חול_המועד_פסח;
         if (value.contains("שבת וחול המועד פסח")) return Parasha.שבת_חול_המועד_פסח;
         if (value.contains("שבת חול המועד פסח")) return Parasha.שבת_חול_המועד_פסח;
+        if (value.contains("חול המועד פסח ושבת")) return Parasha.שבת_חול_המועד_פסח;
         if (value.contains("שבת חולה" + "\"" + "מ פסח")) return Parasha.שבת_חול_המועד_פסח;
         if (value.contains("שבת חול" + "\"" + "מ פסח")) return Parasha.שבת_חול_המועד_פסח;
         if (value.contains("חול" + "\"" + "מ פסח")) return Parasha.שבת_חול_המועד_פסח;
+        if (value.contains("חול" + "\"" + "מ פסח ושבת")) return Parasha.שבת_חול_המועד_פסח;
+
+        if (value.contains("שבת ופסח")) return Parasha.שבת_ופסח;
+        if (value.contains("פסח ושבת")) return Parasha.שבת_ופסח;
+        if (value.contains("שבת פסח")) return Parasha.שבת_ופסח;
+        if (value.contains("שבת בפסח")) return Parasha.שבת_חול_המועד_פסח;
 
         if (value.contains("שבת ושביעי של פסח")) return Parasha.שבת_ושביעי_של_פסח;
+        if (value.contains("שביעי של פסח ושבת")) return Parasha.שבת_ושביעי_של_פסח;
         if (value.contains("שבת שביעי של פסח")) return Parasha.שבת_ושביעי_של_פסח;
         if (value.contains("שבת ושביעי פסח")) return Parasha.שבת_ושביעי_של_פסח;
         if (value.contains("שבת שביעי פסח")) return Parasha.שבת_ושביעי_של_פסח;

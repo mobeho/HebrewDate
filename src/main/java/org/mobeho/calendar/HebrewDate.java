@@ -33,7 +33,7 @@ public class HebrewDate
     private HebrewDate(int year, int month, int day)
     {
         this.reset(year >= 5660 && month >= 5);
-        this.hebrew.set(year, month, day);
+        this.hebrew.set(year, month, day, false);
         this.christian.addDays(this.hebrew.getDaysFromStart() - this.christian.getDaysFromStart());
     }
 
@@ -58,7 +58,7 @@ public class HebrewDate
     public static HebrewDate of(int year, int dayInYear)
     {
         HebrewDate me = new HebrewDate();
-        me.hebrew.set(year, 1, 1);
+        me.hebrew.set(year, 1, 1, true);
         me.hebrew.addDays(dayInYear - 1);
         me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
         return me;
@@ -67,7 +67,19 @@ public class HebrewDate
     public static HebrewDate ofChris(int year, int month, int day)
     {
         HebrewDate me = new HebrewDate(false);
-        me.christian.set(year, month, day);
+        if (me.christian.set(year, month, day))
+            me.hebrew.addDays(me.christian.getDaysFromStart() - me.hebrew.getDaysFromStart());
+        else
+            return null;
+
+        return me;
+    }
+
+    public static HebrewDate ofChris(int year, int dayInYear)
+    {
+        HebrewDate me = new HebrewDate();
+        me.christian.set(year, 1, 1);
+        me.christian.addDays(dayInYear - 1);
         me.hebrew.addDays(me.christian.getDaysFromStart() - me.hebrew.getDaysFromStart());
         return me;
     }
@@ -85,6 +97,24 @@ public class HebrewDate
         HebrewDate me = new HebrewDate();
         if (me.hebrew.of(taarich))
             me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
+        else
+            return null;
+
+        return me;
+    }
+
+    public static HebrewDate of(int year, String taarich)
+    {
+        return HebrewDate.of(year, taarich, true);
+    }
+
+    public static HebrewDate of(int year, String taarich, boolean force)
+    {
+        HebrewDate me = new HebrewDate();
+        if (me.hebrew.of(year, taarich, force))
+            me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
+        else
+            return null;
 
         return me;
     }
@@ -99,7 +129,7 @@ public class HebrewDate
         // Condition = Is after 1900/01/01
         HebrewDate me = new HebrewDate(year >= 5660 && parasha.index >= Parasha.בא.index);
 
-        me.hebrew.set(year, 1, 1);
+        me.hebrew.set(year, 1, 1, true);
         int days = Shabat.getDayInYear(me.getYearType(), parasha, secondPhase);
         if (days == -1)
             return null;
