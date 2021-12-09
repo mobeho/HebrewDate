@@ -1,6 +1,7 @@
 package org.mobeho.calendar;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import org.mobeho.calendar.hilchati.HolyDay;
 import org.mobeho.calendar.cyclic.SummerTime;
 import org.mobeho.calendar.cyclic.DafYomiBavli;
@@ -128,6 +129,7 @@ public class CalendarTest
 
    }
 
+   @Ignore
    @Test
    public void checkTaarichAfterAddingDays()
    {

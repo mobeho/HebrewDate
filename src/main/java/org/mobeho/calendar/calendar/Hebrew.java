@@ -405,22 +405,26 @@ public class Hebrew extends Year
 
     public static String convertMonthAndDay(int month, int day, boolean isLeapYear)
     {
-        if (month < 1 || month > 12 + (isLeapYear ? 1 : 0))
-        {
-            return null;
-        }
-
-        if (isLeapYear && month == 6)
-        {
-            return MONTH_DAY.values()[day-1].toString() + " אדר-א";
-        }
-
         if (day < 1 || day > 30)
         {
             return null;
         }
 
-        return MONTH_DAY.values()[day-1].toString() + " " + MONTHS.values()[month-1].toString();
+        if (month < 1 || month > 12 + (isLeapYear ? 1 : 0))
+        {
+            return null;
+        }
+
+        String text = MONTH_DAY.values()[day-1].toString() + " ";
+
+        if (isLeapYear)
+        {
+            if (month == 6) return text + "אדר-א";
+            else if (month == 7) return text + "אדר-ב";
+            else if (month > 7) return text + MONTHS.values()[month-2].name();
+        }
+
+        return text + MONTHS.values()[month-1].toString();
     }
 
     @Override public void addDays(int days)
@@ -470,22 +474,7 @@ public class Hebrew extends Year
 
     public String getMonthAndDay()
     {
-        if (month < 1 || month > 12 + (yearType.isLeap() ? 1 : 0))
-        {
-            return null;
-        }
-
-        if (yearType.isLeap() && month == 6)
-        {
-            return MONTH_DAY.values()[dayInMonth -1].toString() + " אדר-א";
-        }
-
-        if (dayInMonth < 1 || dayInMonth > 30)
-        {
-            return null;
-        }
-
-        return MONTH_DAY.values()[dayInMonth-1].toString() + " " + MONTHS.values()[month-1].toString();
+        return getDayString() + " " + getMonthString();
     }
 
     public String toYearString()

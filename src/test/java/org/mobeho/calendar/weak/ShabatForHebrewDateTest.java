@@ -75,8 +75,7 @@ public class ShabatForHebrewDateTest
       while (day++ < 272) assertEquals("חקת", HebrewDate.of(5797, day).getShabatName());
       while (day++ < 279) assertEquals("בלק", HebrewDate.of(5797, day).getShabatName());
       while (day++ < 286) assertEquals("פינחס", HebrewDate.of(5797, day).getShabatName());
-      assertEquals("מטות מסעי", HebrewDate.of(5797, day).getParashaName());
-      while (day++ < 293) assertEquals("מטות מסעי (ערב ראש חודש)", HebrewDate.of(5797, day).getShabatName());
+      while (day++ < 293) assertEquals("מטות מסעי", HebrewDate.of(5797, day).getShabatName());
       while (day++ < 300) assertEquals("דברים", HebrewDate.of(5797, day).getShabatName());
       while (day++ < 307) assertEquals("ואתחנן", HebrewDate.of(5797, day).getShabatName());
       while (day++ < 314) assertEquals("עקב", HebrewDate.of(5797, day).getShabatName());

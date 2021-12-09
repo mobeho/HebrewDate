@@ -210,7 +210,7 @@ public class ParashaTest
         while (day++ < 272) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 279) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 286) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 293) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 293) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 300) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 307) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 314) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
@@ -296,7 +296,7 @@ public class ParashaTest
         while (day++ < 83) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 90) assertEquals(חנוכה.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 111) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 118) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 118) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 125) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 139) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 146) assertEquals(שקלים.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
@@ -326,7 +326,7 @@ public class ParashaTest
         while (day++ < 83) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 90) assertEquals(חנוכה.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 111) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 118) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 118) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 167) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 174) assertEquals(שקלים.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 181) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
@@ -354,7 +354,7 @@ public class ParashaTest
         while (day++ < 82) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 89) assertEquals(חנוכה.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 110) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 117) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 117) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 138) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 145) assertEquals(שקלים.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 152) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
@@ -383,7 +383,7 @@ public class ParashaTest
         while (day++ < 82) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 89) assertEquals(חנוכה.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 110) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 117) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 117) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 166) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 173) assertEquals(שקלים.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 180) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
@@ -524,7 +524,7 @@ public class ParashaTest
         while (day++ < 290) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 297) assertEquals(ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 318) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 325) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 325) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 381) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
     }
 
@@ -588,7 +588,7 @@ public class ParashaTest
         while (day++ < 288) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 295) assertEquals(ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 316) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 323) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 323) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 379) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
     }
 
@@ -622,7 +622,7 @@ public class ParashaTest
         while (day++ < 260) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 267) assertEquals(ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 288) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 295) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 295) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 350) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
     }
 

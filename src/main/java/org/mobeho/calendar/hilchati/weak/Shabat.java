@@ -319,6 +319,8 @@ public class Shabat
         int month = convert[0];
         int day = convert[1];
         int allDyas = convert[2];
+
+        // Days until coming Shabat
         int shabat = (7 - (yearType.getFirstDay() + dayInYear -1) % 7) % 7;
 
         // Rosh Hashana is skipped
@@ -328,6 +330,7 @@ public class Shabat
         if (day == 1 && shabat  == 0)
             return Parasha.ראש_חודש;
 
+        // At roshChodesh
         if (day == allDyas - shabat)
         {
             if (allDyas == 30)
@@ -336,11 +339,13 @@ public class Shabat
                 return Parasha.ערב_ראש_חודש;
         }
 
+        // Day before Rosh Chodesh bat only before ל
+        if ((day == allDyas - shabat - 1) && allDyas == 30)
+            return Parasha.ערב_ראש_חודש;
+
+        // 2nd day of Rosh Chodesh
         if (day == allDyas - shabat + 1)
             return Parasha.ראש_חודש;
-
-        if (day == allDyas - shabat - 1)
-            return Parasha.ערב_ראש_חודש;
 
         return null;
     }
