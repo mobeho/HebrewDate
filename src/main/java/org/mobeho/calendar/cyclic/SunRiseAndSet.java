@@ -81,7 +81,7 @@ public class SunRiseAndSet
         int minutes = (int) (time *= 60);
         time -= minutes;
         int seconds = (int) (time *= 60);
-        return String.format("%2d:%02d:%02d", hour, minutes, seconds);
+        return String.format("%-1d:%02d:%02d", hour, minutes, seconds);
     }
 
     public enum Location

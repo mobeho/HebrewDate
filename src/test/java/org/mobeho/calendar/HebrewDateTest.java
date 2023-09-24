@@ -21,32 +21,43 @@ public class HebrewDateTest
         assertNull(HebrewDate.of("התשפב א תשרי"));
 
         assertEquals(HebrewDate.of(5782, 1, 1),   HebrewDate.of("א תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 1),   HebrewDate.of("א רה\"ש התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 1),   HebrewDate.of(5782, 1));
         assertEquals(HebrewDate.of(5782, 1, 2),   HebrewDate.of("ב תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 2),   HebrewDate.of("ראש השנה ב התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 3),   HebrewDate.of("ג תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 3),   HebrewDate.of("צום גדליה התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 4),   HebrewDate.of("ד תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 5),   HebrewDate.of("וילך התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 5),   HebrewDate.of("ה תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 6),   HebrewDate.of("ו תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 7),   HebrewDate.of("ז תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 8),   HebrewDate.of("ח תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 9),   HebrewDate.of("ט תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 10),  HebrewDate.of("י תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 10),  HebrewDate.of("יום כיפור התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 11),  HebrewDate.of("יא תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 12),  HebrewDate.of("יב תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 12),  HebrewDate.of("האזינו התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 13),  HebrewDate.of("יג תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 14),  HebrewDate.of("יד תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 15),  HebrewDate.of("טו תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 15),  HebrewDate.of("חג סוכות התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 16),  HebrewDate.of("טז תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 16),  HebrewDate.of("ב סוכות התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 17),  HebrewDate.of("יז תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 18),  HebrewDate.of("יח תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 19),  HebrewDate.of("יט תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 19),  HebrewDate.of("שבת חול המועד סוכות התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 20),  HebrewDate.of("כ תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 21),  HebrewDate.of("כא תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 22),  HebrewDate.of("כב תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 22),  HebrewDate.of(5782, "שמחת תורה"));
         assertEquals(HebrewDate.of(5782, 1, 23),  HebrewDate.of("כג תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 24),  HebrewDate.of("כד תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 25),  HebrewDate.of("כה תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 26),  HebrewDate.of("כו תשרי התשפב"));
+        assertEquals(HebrewDate.of(5782, 1, 26),  HebrewDate.of("בראשית התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 27),  HebrewDate.of("כז תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 28),  HebrewDate.of("כח תשרי התשפב"));
         assertEquals(HebrewDate.of(5782, 1, 29),  HebrewDate.of("כט תשרי התשפב"));
@@ -58,6 +69,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 2, 1),   HebrewDate.of("א חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 2),   HebrewDate.of("ב חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 3),   HebrewDate.of("ג חשוון התשפב"));
+        assertEquals(HebrewDate.of(5782, 2, 3),   HebrewDate.of("נח התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 4),   HebrewDate.of("ד חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 5),   HebrewDate.of("ה חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 6),   HebrewDate.of("ו חשוון התשפב"));
@@ -65,6 +77,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 2, 8),   HebrewDate.of("ח חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 9),   HebrewDate.of("ט חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 10),  HebrewDate.of("י חשוון התשפב"));
+        assertEquals(HebrewDate.of(5782, 2, 10),  HebrewDate.of("לך-לך התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 11),  HebrewDate.of("יא חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 12),  HebrewDate.of("יב חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 13),  HebrewDate.of("יג חשוון התשפב"));
@@ -72,6 +85,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 2, 15),  HebrewDate.of("טו חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 16),  HebrewDate.of("טז חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 17),  HebrewDate.of("יז חשוון התשפב"));
+        assertEquals(HebrewDate.of(5782, 2, 17),  HebrewDate.of("וירא התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 18),  HebrewDate.of("יח חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 19),  HebrewDate.of("יט חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 20),  HebrewDate.of("כ חשוון התשפב"));
@@ -79,6 +93,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 2, 22),  HebrewDate.of("כב חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 23),  HebrewDate.of("כג חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 24),  HebrewDate.of("כד חשוון התשפב"));
+        assertEquals(HebrewDate.of(5782, 2, 24),  HebrewDate.of("חיי-שרה התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 25),  HebrewDate.of("כה חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 26),  HebrewDate.of("כו חשוון התשפב"));
         assertEquals(HebrewDate.of(5782, 2, 27),  HebrewDate.of("כז חשוון התשפב"));
@@ -90,6 +105,7 @@ public class HebrewDateTest
 
         assertEquals(HebrewDate.of(5782, 3, 1),   HebrewDate.of("א כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 2),   HebrewDate.of("ב כסלו התשפב"));
+        assertEquals(HebrewDate.of(5782, 3, 2),   HebrewDate.of("תולדות התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 3),   HebrewDate.of("ג כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 4),   HebrewDate.of("ד כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 5),   HebrewDate.of("ה כסלו התשפב"));
@@ -97,6 +113,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 3, 7),   HebrewDate.of("ז כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 8),   HebrewDate.of("ח כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 9),   HebrewDate.of("ט כסלו התשפב"));
+        assertEquals(HebrewDate.of(5782, 3, 9),   HebrewDate.of("ויצא התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 10),  HebrewDate.of("י כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 11),  HebrewDate.of("יא כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 12),  HebrewDate.of("יב כסלו התשפב"));
@@ -104,6 +121,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 3, 14),  HebrewDate.of("יד כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 15),  HebrewDate.of("טו כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 16),  HebrewDate.of("טז כסלו התשפב"));
+        assertEquals(HebrewDate.of(5782, 3, 16),  HebrewDate.of("וישלח התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 17),  HebrewDate.of("יז כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 18),  HebrewDate.of("יח כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 19),  HebrewDate.of("יט כסלו התשפב"));
@@ -111,15 +129,19 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 3, 21),  HebrewDate.of("כא כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 22),  HebrewDate.of("כב כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 23),  HebrewDate.of("כג כסלו התשפב"));
+        assertEquals(HebrewDate.of(5782, 3, 23),  HebrewDate.of("וישב התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 24),  HebrewDate.of("כד כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 25),  HebrewDate.of("כה כסלו התשפב"));
+        assertEquals(HebrewDate.of(5782, 3, 25),  HebrewDate.of("א חנוכה התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 26),  HebrewDate.of("כו כסלו התשפב"));
+        assertEquals(HebrewDate.of(5782, 3, 26),  HebrewDate.of("נר שני של חנוכה התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 27),  HebrewDate.of("כז כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 28),  HebrewDate.of("כח כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 29),  HebrewDate.of("כט כסלו התשפב"));
         assertEquals(HebrewDate.of(5782, 3, 30),  HebrewDate.of("ל כסלו התשפב"));
-        assertEquals(HebrewDate.of(5782, 3, 30),   HebrewDate.of(5782, "ל כסלו"));
-        assertEquals(HebrewDate.of(5782, 3, 30),   HebrewDate.of(5782, 89));
+        assertEquals(HebrewDate.of(5782, 3, 30),  HebrewDate.of(5782, "ל כסלו"));
+        assertEquals(HebrewDate.of(5782, 3, 30),  HebrewDate.of(5782, "מקץ"));
+        assertEquals(HebrewDate.of(5782, 3, 30),  HebrewDate.of(5782, 89));
         assertNull(HebrewDate.of("לא כסלו התשפב"));
 
         assertEquals(HebrewDate.of(5782, 4, 1),   HebrewDate.of("א טבת התשפב"));
@@ -129,13 +151,17 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 4, 5),   HebrewDate.of("ה טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 6),   HebrewDate.of("ו טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 7),   HebrewDate.of("ז טבת התשפב"));
+        assertEquals(HebrewDate.of(5782, 4, 7),   HebrewDate.of("ויגש התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 8),   HebrewDate.of("ח טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 9),   HebrewDate.of("ט טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 10),  HebrewDate.of("י טבת התשפב"));
+        assertEquals(HebrewDate.of(5782, 4, 10),  HebrewDate.of("עשרה בטבת התשפב"));
+        assertEquals(HebrewDate.of(5782, 4, 10),  HebrewDate.of("10 בטבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 11),  HebrewDate.of("יא טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 12),  HebrewDate.of("יב טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 13),  HebrewDate.of("יג טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 14),  HebrewDate.of("יד טבת התשפב"));
+        assertEquals(HebrewDate.of(5782, 4, 14),  HebrewDate.of("ויחי התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 15),  HebrewDate.of("טו טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 16),  HebrewDate.of("טז טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 17),  HebrewDate.of("יז טבת התשפב"));
@@ -143,6 +169,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 4, 19),  HebrewDate.of("יט טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 20),  HebrewDate.of("כ טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 21),  HebrewDate.of("כא טבת התשפב"));
+        assertEquals(HebrewDate.of(5782, 4, 21),  HebrewDate.of("שמות התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 22),  HebrewDate.of("כב טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 23),  HebrewDate.of("כג טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 24),  HebrewDate.of("כד טבת התשפב"));
@@ -151,8 +178,8 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 4, 27),  HebrewDate.of("כז טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 28),  HebrewDate.of("כח טבת התשפב"));
         assertEquals(HebrewDate.of(5782, 4, 29),  HebrewDate.of("כט טבת התשפב"));
-        assertEquals(HebrewDate.of(5782, 4, 29),   HebrewDate.of(5782, "כט טבת"));
-        assertEquals(HebrewDate.of(5782, 4, 29),   HebrewDate.of(5782, 118));
+        assertEquals(HebrewDate.of(5782, 4, 29),  HebrewDate.of(5782, "כט טבת"));
+        assertEquals(HebrewDate.of(5782, 4, 29),  HebrewDate.of(5782, 118));
         assertNull(HebrewDate.of("ל טבת התשפב"));
 
         assertEquals(HebrewDate.of(5782, 5, 1),   HebrewDate.of("א שבט התשפב"));
@@ -170,6 +197,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 5, 13),  HebrewDate.of("יג שבט התשפב"));
         assertEquals(HebrewDate.of(5782, 5, 14),  HebrewDate.of("יד שבט התשפב"));
         assertEquals(HebrewDate.of(5782, 5, 15),  HebrewDate.of("טו שבט התשפב"));
+        assertEquals(HebrewDate.of(5782, 5, 15),  HebrewDate.of("15 בשבט התשפב"));
         assertEquals(HebrewDate.of(5782, 5, 16),  HebrewDate.of("טז שבט התשפב"));
         assertEquals(HebrewDate.of(5782, 5, 17),  HebrewDate.of("יז שבט התשפב"));
         assertEquals(HebrewDate.of(5782, 5, 18),  HebrewDate.of("יח שבט התשפב"));
@@ -204,6 +232,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 6, 12),  HebrewDate.of("יב אדר-א התשפב"));
         assertEquals(HebrewDate.of(5782, 6, 13),  HebrewDate.of("יג אדר-א התשפב"));
         assertEquals(HebrewDate.of(5782, 6, 14),  HebrewDate.of("יד אדר-א התשפב"));
+        assertEquals(HebrewDate.of(5782, 6, 14),  HebrewDate.of("פורים קטן התשפב"));
         assertEquals(HebrewDate.of(5782, 6, 15),  HebrewDate.of("טו אדר-א התשפב"));
         assertEquals(HebrewDate.of(5782, 6, 16),  HebrewDate.of("טז אדר-א התשפב"));
         assertEquals(HebrewDate.of(5782, 6, 17),  HebrewDate.of("יז אדר-א התשפב"));
@@ -225,6 +254,7 @@ public class HebrewDateTest
         assertNull(HebrewDate.of("לא אדר-א התשפב"));
 
         assertEquals(HebrewDate.of(5782, 7, 1),   HebrewDate.of("א אדר התשפב"));
+        assertEquals(HebrewDate.of(5782, 7, 1),   HebrewDate.of("א אדר-ב התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 1),   HebrewDate.of(5782, "א אדר"));
         assertEquals(HebrewDate.of(5782, 7, 2),   HebrewDate.of("ב אדר התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 3),   HebrewDate.of("ג אדר התשפב"));
@@ -239,6 +269,7 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 7, 12),  HebrewDate.of("יב אדר התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 13),  HebrewDate.of("יג אדר התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 14),  HebrewDate.of("יד אדר התשפב"));
+        assertEquals(HebrewDate.of(5782, 7, 14),  HebrewDate.of("פורים התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 15),  HebrewDate.of("טו אדר התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 16),  HebrewDate.of("טז אדר התשפב"));
         assertEquals(HebrewDate.of(5782, 7, 17),  HebrewDate.of("יז אדר התשפב"));
@@ -465,6 +496,14 @@ public class HebrewDateTest
         assertEquals(HebrewDate.of(5782, 13, 29),   HebrewDate.of(5782, "כט אלול"));
         assertEquals(HebrewDate.of(5782, 13, 29),   HebrewDate.of(5782, 384));
         assertNull(HebrewDate.of("ל אלול התשפב"));
+
+        // אדר א בתשפג זו טעות ובכל זאת הוא מבין
+        assertEquals(HebrewDate.of(5783, 6, 1),   HebrewDate.of("א אדר-א התשפג"));
+        assertEquals(HebrewDate.of(5783, 6, 1),   HebrewDate.of("א אדר-ב התשפג"));
+        assertEquals(HebrewDate.of(5783, 6, 1),   HebrewDate.of("א אדר התשפג"));
+        assertEquals(HebrewDate.of(5783, 6, 1),   HebrewDate.of(5783, "א אדר-א"));
+        assertEquals(HebrewDate.of(5783, 6, 1),   HebrewDate.of(5783, "א אדר-ב"));
+        assertEquals(HebrewDate.of(5783, 6, 1),   HebrewDate.of(5783, "א אדר"));
     }
 
     @Test
@@ -497,5 +536,16 @@ public class HebrewDateTest
     {
         assertEquals(LocalDate.now(), HebrewDate.now().getLocalDate());
 
+    }
+
+    @Test
+    public void checkYears()
+    {
+        HebrewDate date = HebrewDate.of(1, 1);
+        for (int year = 1; year < 6000; year += 9)
+        {
+            assertEquals(year, HebrewDate.of("א תשרי " + date.getYearString()).getYear());
+            date.addYears(9);
+        }
     }
 }

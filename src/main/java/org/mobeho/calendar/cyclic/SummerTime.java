@@ -20,20 +20,22 @@ public class SummerTime
         HebrewDate start = getStart(date);
         HebrewDate end = getEnd(date);
 
-        if (date.getChrisDayInYear() > 0 && date.getChrisDayInYear() < start.getChrisDayInYear() - 1)
-            return "בשעון חורף";
+//        if (date.getChrisDayInYear() > 0 && date.getChrisDayInYear() < start.getChrisDayInYear() - 1)
+//            return "בשעון חורף";
         if (date.getChrisDayInYear() == (start.getChrisDayInYear() - 1))
             return "סוף שעון חורף";
         else if (date.getChrisDayInYear() == start.getChrisDayInYear())
             return "תחילת שעון קיץ";
-        else if (date.getChrisDayInYear() > start.getChrisDayInYear() && date.getChrisDayInYear() < end.getChrisDayInYear())
-            return "בשעון קיץ";
+//        else if (date.getChrisDayInYear() > start.getChrisDayInYear() && date.getChrisDayInYear() < end.getChrisDayInYear())
+//            return "בשעון קיץ";
         else if (date.getChrisDayInYear() == end.getChrisDayInYear())
             return "סוף שעון קיץ";
         else if (date.getChrisDayInYear() == (end.getChrisDayInYear() + 1))
             return "תחילת שעון חורף";
+//        else
+//            return "בשעון חורף";
         else
-            return "בשעון חורף";
+            return "";
     }
 
     static public HebrewDate getStart(HebrewDate date)
@@ -47,6 +49,6 @@ public class SummerTime
     {
         // Last Sunday before Oct 31
         HebrewDate fallDate = HebrewDate.ofChris(date.getChrisYear(), 10, 31);
-        return fallDate.addDays(-(fallDate.getDayOfWeak() - 1));
+        return fallDate.addDays(-(fallDate.getDayOfWeak()));
     }
 }

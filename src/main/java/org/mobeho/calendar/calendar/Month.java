@@ -9,16 +9,21 @@ import java.util.Scanner;
 public abstract class Month extends Day
 {
     int month;
+
     public int getMonth()
     {
         return this.month;
     }
+
     int moladHachodesh;
+
     public int getMoladHachodesh()
     {
         return moladHachodesh;
     }
+
     TimeClass moladHachodeshTime;
+
     public TimeClass getMoladHachodeshTime()
     {
         return moladHachodeshTime;
@@ -48,6 +53,7 @@ public abstract class Month extends Day
     }
 
     protected abstract void addYears(int yearsAdd);
+
     protected void addMonths(int months)
     {
         if (months <= 0)
@@ -75,13 +81,14 @@ public abstract class Month extends Day
     }
 
     protected abstract void setNextYear();
+
     protected void setNextMonth()
     {
         boolean shift = isShift(this.month, getNumberOfMonths(), 1);
         this.month = adv(this.month, getNumberOfMonths(), 1);
         if (shift) setNextYear();
         // The time adding to the new Molad
-        this.moladHachodesh = adv(this.moladHachodesh, 7, 1 + this.moladHachodeshTime.addTime(12,793));
+        this.moladHachodesh = adv(this.moladHachodesh, 7, 1 + this.moladHachodeshTime.addTime(12, 793));
     }
 
     protected static int compare(Month monthClass1, Month monthClass2)
@@ -91,23 +98,30 @@ public abstract class Month extends Day
         return Day.compare(monthClass1, monthClass2);
     }
 
-    protected enum MONTHS {תשרי,חשוון,כסלו,טבת,שבט,אדר,ניסן,אייר,סיוון,תמוז,אב,אלול}
+    protected enum MONTHS
+    {תשרי, חשוון, כסלו, טבת, שבט, אדר, ניסן, אייר, סיוון, תמוז, אב, אלול}
 
     public String getMonthString()
     {
-        if (getNumberOfMonths() == 13)
+        return getMonthString(this.month, getNumberOfMonths());
+    }
+
+    public static String getMonthString(int month, int numberOfMonths)
+    {
+        if (numberOfMonths == 13)
         {
-            if (this.month == 6) return "אדר-א";
-            else if (this.month == 7) return "אדר-ב";
-            else if (this.month > 7) return MONTHS.values()[this.month-2].name();
+            if (month == 6) return "אדר-א";
+            else if (month == 7) return "אדר-ב";
+            else if (month > 7) return MONTHS.values()[month-2].name();
         }
 
-        return  MONTHS.values()[this.month-1].name();
+        return  MONTHS.values()[month-1].name();
     }
 
     abstract public int getNumberOfMonths();
 
-    public static int[] convertMonthAndDay(String monthAndDay)
+    // earlier = true, we sure it is leap year, and we want to be on Adar א
+    public static int[] convertMonthAndDay(String monthAndDay, boolean earlier)
     {
         monthAndDay = convertMonth(monthAndDay);
         Scanner scanner = new Scanner(monthAndDay);
@@ -136,7 +150,18 @@ public abstract class Month extends Day
             month = 6;
             leapYear = 1;
         }
-
+        else if ("אדר-ב".equals(monthName) && earlier)
+        {
+            month = 7;
+            leapYear = 1;
+        }
+        else if ("אדר".equals(monthName) && earlier)
+        {
+            month = 6;
+            leapYear = 1;
+        }
+        else if ("אדר-ב".equals(monthName))
+            month = 6;
         else
         {
             try
@@ -155,7 +180,7 @@ public abstract class Month extends Day
         return new int[]{month, day, leapYear};
     }
 
-    private static String convertMonth(String value)
+    public static String convertMonth(String value)
     {
         value = value.trim();
         value = value.replaceAll("_"," ");
@@ -164,15 +189,31 @@ public abstract class Month extends Day
         value = value.replaceAll("'","");
         value = value.replaceAll("\"","");
         value = value.replaceAll("תישרי","תשרי");
+        value = value.replaceAll("בתישרי","תשרי");
+        value = value.replaceAll("בתשרי","תשרי");
         value = value.replaceAll("חשון","חשוון");
+        value = value.replaceAll("בחשון","חשוון");
+        value = value.replaceAll("בחשוון","חשוון");
+        value = value.replaceAll("בכסלו","כסלו");
+        value = value.replaceAll("בטבת","טבת");
+        value = value.replaceAll("בשבט","שבט");
+        // אדר ישאר אדר
         value = value.replaceAll("אדר א","אדר-א");
+        value = value.replaceAll("באדר א","אדר-א");
         value = value.replaceAll("אדר 1","אדר-א");
         value = value.replaceAll("אדר ראשון","אדר-א");
-        value = value.replaceAll("אדר ב","אדר");
-        value = value.replaceAll("אדר 2","אדר");
-        value = value.replaceAll("אדר שני","אדר");
+        value = value.replaceAll("באדר ראשון","אדר-א");
+        value = value.replaceAll("אדר ב","אדר-ב");
+        value = value.replaceAll("באדר ב","אדר-ב");
+        value = value.replaceAll("אדר 2","אדר-ב");
+        value = value.replaceAll("אדר שני","אדר-ב");
+        value = value.replaceAll("באדר שני","אדר-ב");
         value = value.replaceAll("סיון","סיוון");
-        return value.replaceAll("מנחם אב","אב");
+        value = value.replaceAll("בסיון","סיוון");
+        value = value.replaceAll("בתמוז","תמוז");
+        value = value.replaceAll("מנחם אב","אב");
+        value = value.replaceAll("במנחם אב","אב");
+        return value.replaceAll("באלול","אלול");
     }
 
     public String[] getMonthsString()

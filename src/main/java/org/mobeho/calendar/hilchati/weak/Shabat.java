@@ -34,6 +34,7 @@ public class Shabat
         return "";
     }
 
+    // chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.shoresh.org.il/usersfiles/articlesdocs/parashot.pdf
     public static String getHaftara(YearType yearType, int dayInYear, Parasha.Eda eda)
     {
         Parasha[] parashot = Shabat.getShabat(yearType, dayInYear);
@@ -46,8 +47,20 @@ public class Shabat
         if (parashot.length == 3)
             haftara = parashot[2];
 
-        if (haftara == Parasha.ראש_חודש && eda == Parasha.Eda.SFARADI && yearType.getPesachDay() == 7)
-            return Parasha.ראה.sfaradi;
+        if (yearType.getPesachDay() == 7)
+        {
+            if (haftara == Parasha.ראש_חודש && eda == Parasha.Eda.SFARADI)
+                return Parasha.ראה.sfaradi + ";ישעיהו סו א; סו כג";
+
+            if (haftara == Parasha.כי_תצא && eda == Parasha.Eda.ASHKENAZI)
+                return Parasha.כי_תצא.ashkenazi + ";" + Parasha.ראה.ashkenazi;
+        }
+
+        if (yearType.getPesachDay() == 1)
+        {
+            if (haftara == Parasha.ערב_ראש_חודש && eda == Parasha.Eda.SFARADI)
+                return Parasha.ראה.sfaradi + ";שמואל א כ יח; כ מב";
+        }
 
         switch (eda)
         {

@@ -1,5 +1,7 @@
 package org.mobeho.calendar.calendar;
 
+import java.util.Arrays;
+
 /// <Description>
 /// Author: Michael Maimon
 /// Copyright (C) Mobeho.  All rights reserved.
@@ -280,61 +282,75 @@ public abstract class Year extends Month
         return this.year;
     }
 
-    private enum Units {א,ב,ג,ד,ה,ו,ז,ח,ט,י,יא,יב,יג,יד,טו,טז}
-    private enum Tens {י,כ,ל,מ,נ,ס,ע,פ,צ}
-    private enum Hundreds {ק,ר,ש,ת,תק,תר,תש,תת,תתק}
+    private static final String unitLetters = "אבגדהוזחט";
+    private static final String tenLetters = "יכלמנסעפצ";
+    private static final String hundredLetters = "קרשת56789";
 
     public static int getYearString(String value)
     {
-        if (value.length() < 2)
-            // Can't convert to hebrew year
+        value = value.replaceAll("תתק", "9");
+        value = value.replaceAll("תת", "8");
+        value = value.replaceAll("תש", "7");
+        value = value.replaceAll("תר", "6");
+        value = value.replaceAll("תק", "5");
+
+        value = value.replaceAll("טו", "יה");
+        value = value.replaceAll("טז", "יו");
+
+        value = value.replaceAll("ך", "כ");
+        value = value.replaceAll("ם", "מ");
+        value = value.replaceAll("ן", "נ");
+        value = value.replaceAll("ף", "פ");
+        value = value.replaceAll("ץ", "צ");
+
+        int pos = value.length() - 1;
+        if (pos < 0)
             return -1;
 
-        try
+        int units = 0;
+        if (pos >= 0)
         {
-            int pos = 0;
-            int thousands = Units.valueOf(String.valueOf(value.charAt(pos++))).ordinal() + 1;
-            int hundreds = 0;
-            switch (value.charAt(pos++))
-            {
-                case 'ק': hundreds = 1; break;
-                case 'ר': hundreds = 2; break;
-                case 'ש': hundreds = 3; break;
-                case 'ת': hundreds = 4; break;
-            }
-            if (hundreds == 4)
-            {
-                switch (value.charAt(pos++))
-                {
-                    case 'ק': hundreds += 1; break;
-                    case 'ר': hundreds += 2; break;
-                    case 'ש': hundreds += 3; break;
-                    case 'ת': hundreds += 4; break;
-                }
-                if (hundreds == 8)
-                {
-                    if (value.charAt(pos++) == 'ק')
-                        hundreds++;
-                }
-            }
-
-            int tens = 0;
-            if (value.length() > pos)
-                tens = Tens.valueOf(String.valueOf(value.charAt(pos++))).ordinal() + 1;
-            int units = 0;
-            if (value.length() > pos)
-                units = Units.valueOf(String.valueOf(value.charAt(pos))).ordinal() + 1;
-
-            return  1000*thousands + 100*hundreds + 10*tens + units;
+            units = unitLetters.indexOf(value.charAt(pos))+1;
+            if (units > 0)
+                pos--;
+            else if (pos == 1 && value.charAt(pos) == '\'')
+                pos--;
         }
-        catch (Exception ex)
+
+        int tens = 0;
+        if (pos >= 0)
         {
-            // throw new Exception("לא ניתן להמיר ערך זה לשנה עברית");
+            tens = tenLetters.indexOf(value.charAt(pos))+1;
+            if (tens > 0)
+                pos--;
+        }
+
+        int hundreds = 0;
+        if (pos >= 0)
+        {
+            hundreds = hundredLetters.indexOf(value.charAt(pos))+1;
+            if (hundreds > 0)
+                pos--;
+        }
+
+        int thousands = 0;
+        if (pos >= 0)
+        {
+            thousands = unitLetters.indexOf(value.charAt(pos))+1;
+            if (thousands > 0)
+                pos--;
+        }
+
+        // No more letters should appear
+        if (pos >= 0)
             return -1;
-        }
 
+        return thousands*1000 + hundreds*100 + tens*10 + units;
     }
 
+    private enum Units {א,ב,ג,ד,ה,ו,ז,ח,ט,י}
+    private enum Tens {י,כ,ל,מ,נ,ס,ע,פ,צ}
+    private enum Hundreds {ק,ר,ש,ת,תק,תר,תש,תת,תתק}
     public String getYearString()
     {
        if (this.year > 6000)
@@ -348,8 +364,18 @@ public abstract class Year extends Month
        String numberString = "";
        if (thousands > 0) numberString += Units.values()[thousands - 1].name();
        if (hundreds > 0) numberString += Hundreds.values()[hundreds - 1].name();
-       if (tens > 0) numberString += Tens.values()[tens - 1].name();
+
+       if (tens == 1 && (units == 5 || units == 6))
+       {
+           numberString += "ט";
+           units++;
+       }
+       else if (tens > 0) numberString += Tens.values()[tens - 1].name();
        if (units > 0) numberString += Units.values()[units - 1];
+
+       if (hundreds == 0 && tens == 0 && units == 0)
+           numberString += "'";
+
        return numberString;
     }
 

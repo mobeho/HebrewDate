@@ -299,6 +299,10 @@ public class ShabatTest
     @Test
     public void checkShabat()
     {
+        System.out.println("");
+        System.out.println("ShabatTest.checkShabat");
+        System.out.println("----------------------");
+
         // בחג = 5797
         // בחה = 5793
         // בשה = 5783
@@ -314,8 +318,7 @@ public class ShabatTest
         // זשג = 5764
         // זשה = 5814
 
-        HebrewDate date = HebrewDate.of(5822, 1, 1);
-        System.out.println(date.getYearType());
+        HebrewDate date = HebrewDate.of(HebrewDate.now().getYear(), 1, 1);
 
         for (; date.getDayInYear() < date.getNumberDaysInYear(); date.addDays(1))
         {

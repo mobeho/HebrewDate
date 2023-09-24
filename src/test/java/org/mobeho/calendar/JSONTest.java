@@ -29,7 +29,7 @@ public class JSONTest
         assertEquals("{\"list\":[{\"index\":1,\"month\":\"תשרי\"},{\"index\":2,\"month\":\"חשוון\"},{\"index\":3,\"month\":\"כסלו\"},{\"index\":4,\"month\":\"טבת\"},{\"index\":5,\"month\":\"שבט\"},{\"index\":6,\"month\":\"אדר\"},{\"index\":7,\"month\":\"ניסן\"},{\"index\":8,\"month\":\"אייר\"},{\"index\":9,\"month\":\"סיוון\"},{\"index\":10,\"month\":\"תמוז\"},{\"index\":11,\"month\":\"אב\"},{\"index\":12,\"month\":\"אלול\"}]}", json);
 
         json = JSONForHebrew.getDays(5780, 3);
-        assertTrue(json.startsWith("{\"list\":[{\"index\":1,\"day\":\"א\",\"weekDay\":\"יום שישי\"},{\"index\":2,\"day\":\"ב\",\"weekDay\":\"יום שבת\"},{\"index\":3,\"day\":\"ג\",\"weekDay\":\"יום ראשון\"},{\"index\":4,\"day\":\"ד\",\"weekDay\":\"יום שני\"}"));
+        assertTrue(json.startsWith("{\"list\":[{\"index\":1,\"day\":\"א\",\"weekDay\":\"יום שישי\"},{\"index\":2,\"day\":\"ב\",\"weekDay\":\"שבת\"},{\"index\":3,\"day\":\"ג\",\"weekDay\":\"יום ראשון\"},{\"index\":4,\"day\":\"ד\",\"weekDay\":\"יום שני\"}"));
 
         json = JSONForHebrew.getShabatot(5780, (byte)3);
         assertTrue(json.startsWith("{\"list\":[{\"index\":1,\"name\":\"בראשית\",\"dayInYear\":27,\"taarich\":\"כח תשרי\"},{\"index\":2,\"name\":\"נח\",\"dayInYear\":34,\"taarich\":\"ה חשוון\"}"));

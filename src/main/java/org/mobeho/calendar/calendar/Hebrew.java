@@ -1,5 +1,10 @@
 package org.mobeho.calendar.calendar;
 
+import org.mobeho.calendar.HebrewDate;
+import org.mobeho.calendar.hilchati.HolyDay;
+import org.mobeho.calendar.hilchati.weak.Parasha;
+import org.mobeho.calendar.hilchati.weak.Shabat;
+
 import java.util.Scanner;
 
 /// <Description>
@@ -154,49 +159,93 @@ public class Hebrew extends Year
         addDays((int)Math.round(days));
     }
 
-    public boolean of(String taarich)
+    // inputYear == null
+    // חג שנה
+    // יום חג שנה
+    // יום חודש שנה
+    // פרשת שבוע שנה
+
+    // inputYear != null
+    // חג
+    // יום חג
+    // יום חודש
+    // פרשת שבוע
+
+    // earlier = true
+    // Required ADAR A, on leap year
+    // When there are two Vayelech, true for the one in Tishrei, false for the one in Elul
+    public boolean of(Integer inputYear, String taarich, boolean earlier)
     {
-        int first = taarich.indexOf(" ");
-        int second = taarich.indexOf(" ", first);
-        if (first < 0 || second < 0)
+        int last = taarich.lastIndexOf(" ");
+        if (last < 0 && inputYear == null)
             return false;
 
-        Scanner scanner = new Scanner(taarich);
-        scanner.useDelimiter(" ");
+        String monthAndDayString = "";
+        int year;
+        if (inputYear != null)
+        {
+            year = inputYear;
+            monthAndDayString = taarich;
+        }
+        else
+        {
+            year = Hebrew.getYearString(taarich.substring(last + 1));
+            if (year == -1)
+                return false;
 
-        String monthAndDayString = scanner.next() + " " + scanner.next();
-        int[] monthAndDay = convertMonthAndDay(monthAndDayString);
-        if (monthAndDay[0] == -1)
+            monthAndDayString = taarich.substring(0, last);
+        }
+
+        // Required ADAR A, on leap year
+        earlier = YearType.getIfLeapYear(year) && earlier;
+        int[] monthAndDay = convertMonthAndDay(monthAndDayString, earlier);
+        if (monthAndDay[0] > 0)
+        {
+//            // contradiction between year and monthAndDay[2]
+//            if (!YearType.getIfLeapYear(year) && monthAndDay[2] == 1)
+//                return false;
+
+            if (YearType.getIfLeapYear(year) && monthAndDay[0] > 5)
+                monthAndDay[0] = monthAndDay[0] + 1 - monthAndDay[2];
+
+            return set(year, monthAndDay[0], monthAndDay[1], false);
+        }
+
+        set(year, 1, 1, false); // don't care to set to this year even it will return false
+        HolyDay holyDay = HolyDay.of(monthAndDayString);
+        if (holyDay != null)
+        {
+            addDays(HolyDay.getDayInYear(getYearType(), holyDay) - 1);
+            return true;
+        }
+
+        Parasha[] parashot = Parasha.of(monthAndDayString);
+        Parasha parasha = (parashot[1] != null ? parashot[1] : parashot[0]);
+        if (parasha == null)
             return false;
 
-        int year = Hebrew.getYearString(scanner.next());
-        if (year == -1)
-            return false;
-
-        if (YearType.getIfLeapYear(year) && monthAndDay[0] > 5)
-            monthAndDay[0] = monthAndDay[0] + 1 - monthAndDay[2];
-
-        return set(year, monthAndDay[0], monthAndDay[1], false);
+        addDays(Shabat.getDayInYear(getYearType(), parasha, !earlier) - 1);
+        return true;
     }
 
-    public boolean of(int year, String taarich, boolean force)
-    {
-        Scanner scanner = new Scanner(taarich);
-        scanner.useDelimiter(" ");
-
-        String monthAndDayString = scanner.next() + " " + scanner.next();
-        int[] monthAndDay = convertMonthAndDay(monthAndDayString);
-        if (monthAndDay[0] == -1)
-            return false;
-
-        if (YearType.getIfLeapYear(year) && monthAndDay[0] > 5)
-            monthAndDay[0] = monthAndDay[0] + 1 - monthAndDay[2];
-
-        if (!force && !YearType.getIfLeapYear(year) && monthAndDay[2] == 1)
-            return false;
-
-        return set(year, monthAndDay[0], monthAndDay[1], force);
-    }
+//    public boolean of(int year, String taarich, boolean force)
+//    {
+//        Scanner scanner = new Scanner(taarich);
+//        scanner.useDelimiter(" ");
+//
+//        String monthAndDayString = scanner.next() + " " + scanner.next();
+//        int[] monthAndDay = convertMonthAndDay(monthAndDayString);
+//        if (monthAndDay[0] == -1)
+//            return false;
+//
+//        if (YearType.getIfLeapYear(year) && monthAndDay[0] > 5)
+//            monthAndDay[0] = monthAndDay[0] + 1 - monthAndDay[2];
+//
+//        if (!force && !YearType.getIfLeapYear(year) && monthAndDay[2] == 1)
+//            return false;
+//
+//        return set(year, monthAndDay[0], monthAndDay[1], force);
+//    }
 
     public static int compare(Hebrew hebrewDate1, Hebrew hebrewDate2)
     {
@@ -392,15 +441,11 @@ public class Hebrew extends Year
 
     public boolean isToday(String checkThis)
     {
-        try
-        {
-            int[] monthDay = convertMonthAndDay(checkThis);
-            return (this.month == monthDay[0] && this.dayInMonth == monthDay[1]);
-        }
-        catch (Exception ex)
-        {
+        if (checkThis == null)
             return false;
-        }
+
+        checkThis = convertMonth(checkThis);
+        return this.getMonthAndDay().equals(checkThis);
     }
 
     public static String convertMonthAndDay(int month, int day, boolean isLeapYear)

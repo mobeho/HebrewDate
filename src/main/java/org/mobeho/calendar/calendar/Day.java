@@ -112,13 +112,16 @@ abstract public class Day
         return String.valueOf(MONTH_DAY.values()[this.dayInMonth-1]);
     }
 
+    // Expecting 1 as Sunday and 7 = שבת
     public String getDayOfWeakString()
     {
-        return "יום " + WEEK_DAY.values()[this.dayOfWeak-1];
+        return getDayOfWeekString(this.dayOfWeak);
     }
-    // Expecting 1 as Sunday and 7 = שבת
     public static String getDayOfWeekString(int day)
     {
+        if (day == 7)
+            return "שבת";
+
         return "יום " + WEEK_DAY.values()[day-1];
     }
 

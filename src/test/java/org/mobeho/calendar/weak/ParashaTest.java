@@ -1,6 +1,7 @@
 package org.mobeho.calendar.weak;
 
 import org.junit.Test;
+import org.mobeho.calendar.HebrewDate;
 import org.mobeho.calendar.calendar.YearType;
 import org.mobeho.calendar.hilchati.weak.Parasha;
 import org.mobeho.calendar.hilchati.weak.Shabat;
@@ -396,7 +397,13 @@ public class ParashaTest
         while (day++ < 229) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 236) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 347) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 355) assertEquals(ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 355)
+        {
+            assertEquals(ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+            assertEquals(Parasha.ראה.sfaradi + ";ישעיהו סו א; סו כג", Shabat.getHaftaraSpecial(type, day, Eda.SFARADI));
+        }
+        while (day++ < 362);
+        while (day++ < 369) assertEquals(Parasha.כי_תצא.ashkenazi + ";" + Parasha.ראה.ashkenazi, Shabat.getHaftara(type, day, eda));
         while (day++ < 384) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
     }
 
@@ -459,7 +466,11 @@ public class ParashaTest
         while (day++ < 318) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 325) assertEquals(ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
         while (day++ < 346) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
-        while (day++ < 353) assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+        while (day++ < 353)
+        {
+            assertEquals(ערב_ראש_חודש.ashkenazi, Shabat.getHaftaraSpecial(type, day, eda));
+            assertEquals(Parasha.ראה.sfaradi + ";שמואל א כ יח; כ מב", Shabat.getHaftaraSpecial(type, day, Eda.SFARADI));
+        }
         while (day++ < 360) assertEquals("", Shabat.getHaftaraSpecial(type, day, eda));
     }
 

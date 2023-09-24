@@ -8,9 +8,10 @@ import org.mobeho.calendar.HebrewDate;
 /// </Description>
 public class DafYomiBavli
 {
-    private static class Masechet
+    public static class Masechet
     {
         public String Name;
+        public int page;
         public int pages;
 
         public Masechet(String name, int pages)
@@ -105,6 +106,14 @@ public class DafYomiBavli
         return String.format("מחזור:%d - %s %s", place[0], Shas[place[1]].Name, getPageString(place[2]));
     }
 
+    public static Masechet getMasechetInfo(HebrewDate date)
+    {
+        int[] data = getMasechetAndDaf(date);
+        Masechet masechet = Shas[data[1]];
+        masechet.page = data[2];
+        return masechet;
+    }
+
     public static String getInfo(HebrewDate date)
     {
         int[] place = getMasechetAndDaf(date);
@@ -118,12 +127,12 @@ public class DafYomiBavli
     // 15/10/5775 is 2094590 days from start
     private static int[] getMasechetAndDaf(HebrewDate date)
     {
-        int days =  date.getDaysFromStart() - 2094590;
+        int days =  date.getDaysFromStart() - 2094589;
         if (days < 0)
             return new int[]{};
 
         int machzor = 8;
-        while (days >= 2711)
+        while (days > 2711)
         {
             machzor++;
             days -= 2711;
@@ -135,7 +144,7 @@ public class DafYomiBavli
             days -= Shas[masechet].pages;
         }
 
-        return new int[]{machzor, masechet, days+2};
+        return new int[]{machzor, masechet, days+1};
     }
 
 
@@ -151,7 +160,13 @@ public class DafYomiBavli
         String numberString = "";
         if (hundreds > 0)
             numberString += Hundreds.values()[hundreds-1].name();
-        if (tens > 0)
+
+        if (tens == 1 && (units == 5 || units == 6))
+        {
+            numberString += 'ט';
+            units++;
+        }
+        else if (tens > 0)
             numberString += Tens.values()[tens-1].name();
         if (units > 0)
             numberString += Units.values()[units-1];

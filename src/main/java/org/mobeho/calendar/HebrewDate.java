@@ -2,7 +2,7 @@ package org.mobeho.calendar;
 
 import org.mobeho.calendar.calendar.*;
 import org.mobeho.calendar.hilchati.HolyDay;
-import org.mobeho.calendar.hilchati.SfiratHaomer;
+import org.mobeho.calendar.hilchati.Yearly;
 import org.mobeho.calendar.hilchati.weak.Shabat;
 import org.mobeho.calendar.hilchati.weak.Parasha;
 
@@ -92,10 +92,11 @@ public class HebrewDate
         return me;
     }
 
-    public static HebrewDate of(String taarich)
+    public static HebrewDate of(String taarich) {return of(taarich, false);}
+    public static HebrewDate of(String taarich, boolean earlier)
     {
         HebrewDate me = new HebrewDate();
-        if (me.hebrew.of(taarich))
+        if (me.hebrew.of(null, taarich, earlier))
             me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
         else
             return null;
@@ -103,15 +104,11 @@ public class HebrewDate
         return me;
     }
 
-    public static HebrewDate of(int year, String taarich)
-    {
-        return HebrewDate.of(year, taarich, true);
-    }
-
-    public static HebrewDate of(int year, String taarich, boolean force)
+    public static HebrewDate of(int year, String taarich) {return of(year, taarich, false);}
+    public static HebrewDate of(int year, String taarich, boolean earlier)
     {
         HebrewDate me = new HebrewDate();
-        if (me.hebrew.of(year, taarich, force))
+        if (me.hebrew.of(year, taarich, earlier))
             me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
         else
             return null;
@@ -131,6 +128,21 @@ public class HebrewDate
 
         me.hebrew.set(year, 1, 1, true);
         int days = Shabat.getDayInYear(me.getYearType(), parasha, secondPhase);
+        if (days == -1)
+            return null;
+
+        me.addDays(days - 1);
+        me.christian.addDays(me.hebrew.getDaysFromStart() - me.christian.getDaysFromStart());
+        return me;
+    }
+
+    public static HebrewDate of(int year, HolyDay holyDay)
+    {
+        // Condition = Is after 1900/01/01
+        HebrewDate me = new HebrewDate(year >= 5660 && holyDay.ordinal() >= HolyDay.טו_בשבט.ordinal());
+
+        me.hebrew.set(year, 1, 1, true);
+        int days = HolyDay.getDayInYear(me.getYearType(), holyDay);
         if (days == -1)
             return null;
 
@@ -190,7 +202,7 @@ public class HebrewDate
 
     public static int[] convertMonthAndDay(String monthAndDay)
     {
-        return Hebrew.convertMonthAndDay(monthAndDay);
+        return Hebrew.convertMonthAndDay(monthAndDay, false);
     }
 
     public static String convertMonthAndDay(int month, int day, boolean isLeapYear)
@@ -486,9 +498,14 @@ public class HebrewDate
         return getChrisDayString() + delimiter + getChrisMonthString();
     }
 
-    public int getSfiratHaomer()
+    public int getSfiratHaomerAsNumber()
     {
-        return SfiratHaomer.getInfo(this.hebrew);
+        return Yearly.getSfiraAsNumber(this);
+    }
+
+    public String getSfiratHaomerAsText()
+    {
+        return Yearly.getSfiraAsText(this);
     }
 
     public static int compare(HebrewDate hebrewDate1, HebrewDate hebrewDate2)

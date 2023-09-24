@@ -47,8 +47,8 @@ public class Convert
         int shabatTishreiHoliday = 1;
         int shabatPesach = 1;
         if ((index == 0) || // Soccut
-                (index == -3 && yearType.getFirstDay() == 7) || // Rosh Hashan
-                (index == -1 && yearType.getFirstDay() > 4)  // Yom Kipur
+            (index == -3 && yearType.getFirstDay() == 7) || // Rosh Hashan
+            (index == -1 && yearType.getFirstDay() > 4)  // Yom Kipur
         )
         {
             shabatTishreiHoliday = 0;
