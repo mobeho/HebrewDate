@@ -202,6 +202,53 @@ public enum HolyDay //implements SpecialClass
         return true;
     }
 
+    public static boolean isLamenatzeach(YearType yearType, int dayInYear)
+    {
+        HolyDay holyDay = getInfo(yearType, dayInYear);
+        if (getInfo(yearType, dayInYear) != null)
+        {
+            switch (holyDay)
+            {
+                case טו_בשבט:
+                case פורים_קטן:
+                case פורים:
+                case העצמאות:
+                case ירושלים:
+                case ט_באב:
+                case טו_באב:
+                    return false;
+                default:
+                    return true;
+            }
+        }
+
+        int[] convert = Shabat.getMonthDay(yearType, dayInYear);
+        int day = convert[1];
+
+        // Rosh Chodesh
+        if (day == 1 || day == 30)
+            return false;
+
+        // Erev Yom Kipur
+        if (dayInYear == 9)
+            return false;
+
+        // Chol Hamoed Sukot
+        if (dayInYear > 15 && dayInYear < 22)
+            return false;
+
+        // Chanuka
+        int holiday = (30 + 29 + ((yearType.getBalance() <= 0)?0:1) + 25);
+        if (dayInYear >= holiday && dayInYear <= holiday + 7)
+            return false;
+
+        // Erev Pesach
+        if (dayInYear == yearType.getNumberDaysInYear() - (29+30+29+30+29+15))
+            return false;
+
+        return true;
+    }
+
     public static String getName(YearType yearType, int dayInYear)
     {
         HolyDay holidyDay = HolyDay.getInfo(yearType, dayInYear);
