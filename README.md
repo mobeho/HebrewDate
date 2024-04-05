@@ -1,7 +1,8 @@
 # HebrewDate
 This project provides everything you need to build a Jewish/Hebrew calendar in java.  
-Can be found and download as jar at https://mvnrepository.com/artifact/com.github.mobeho/HebrewDate.
-Untill verion 0.3.5 it will work with Java 1.8.
+Can be found and download as jar at https://mvnrepository.com/artifact/com.github.mobeho/HebrewDate
+
+(Untill verion 0.3.5 it will work with Java 1.8)
 
 ## Convert  
   
