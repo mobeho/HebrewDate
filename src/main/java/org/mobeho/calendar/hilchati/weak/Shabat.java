@@ -62,6 +62,17 @@ public class Shabat
                 return Parasha.ראה.sfaradi + ";שמואל א כ יח; כ מב";
         }
 
+        // chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.ybm.org.il/Admin/uploaddata/LessonsFiles/Pdf/3408.pdf
+        if (yearType == YearType.זחג)
+        {
+            if (haftara == Parasha.אחרי_מות && eda == Parasha.Eda.ASHKENAZI)
+                return Parasha.אחרי_מות.ashkenazi;
+
+            if (haftara == Parasha.קדשים && eda == Parasha.Eda.ASHKENAZI)
+                return Parasha.קדשים.ashkenazi;
+        }
+
+
         switch (eda)
         {
             case ASHKENAZI:

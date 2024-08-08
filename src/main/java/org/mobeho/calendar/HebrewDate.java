@@ -495,7 +495,7 @@ public class HebrewDate
 
     public String toDayMonthChrisString(String delimiter)
     {
-        return getChrisDayString() + delimiter + getChrisMonthString();
+        return String.format("%02d%s%02d", this.christian.getDay(), delimiter, this.christian.getMonth());
     }
 
     public int getSfiratHaomerAsNumber()
