@@ -72,37 +72,114 @@ public class SunRiseAndSet
         return part;
     }
 
-    // Display decimal time in hours, minutes and second
-    public static String timeToString(double time)
+    public static double stringToTime(String timeStr)
     {
-        if (time == 0)
-            return "NaN";
+        String[] parts = timeStr.split(":");
 
-        int hour = (int) time;
-        time -= hour;
-        int minutes = (int) (time *= 60);
-        time -= minutes;
-        int seconds = (int) (time *= 60);
-        return String.format("%-1d:%02d:%02d", hour, minutes, seconds);
+        // Parse hours, minutes, and seconds
+        int hours = 0;
+        int minutes = 0;
+        int seconds = 0;
+
+        if (parts.length == 3)
+        {
+            try
+            {
+                // Format is H:MM:SS
+                hours = Integer.parseInt(parts[0]);
+                if (hours < 0 || hours > 23)
+                    return -1.0;
+                minutes = Integer.parseInt(parts[1]);
+                if (minutes < 0 || minutes > 59)
+                    return -1.0;
+                seconds = Integer.parseInt(parts[2]);
+                if (seconds < 0 || seconds > 59)
+                    return -1.0;
+            }
+            catch (Exception ignore)
+            {
+                return -1.0;
+            }
+        }
+        else if (parts.length == 2)
+        {
+            // Format is H:MM or MM:SS
+            if (parts[0].matches("\\d+"))
+            {
+                // Assume the format is H:MM
+                hours = Integer.parseInt(parts[0]);
+                minutes = Integer.parseInt(parts[1]);
+            }
+            else
+            {
+                // Assume the format is MM:SS
+                minutes = Integer.parseInt(parts[0]);
+                seconds = Integer.parseInt(parts[1]);
+            }
+        }
+        else if (parts.length == 1)
+        {
+            // Format is MM or SS (only for special cases)
+            if (parts[0].matches("\\d+"))
+            {
+                minutes = Integer.parseInt(parts[0]);
+            }
+            else
+            {
+                seconds = Integer.parseInt(parts[0]);
+            }
+        }
+        else
+        {
+            return  -1.0;
+        }
+
+        // Convert to double
+        double totalMinutes = hours * 60.0 + minutes;
+        double totalHours = totalMinutes / 60.0 + seconds / 3600.0;
+
+        return totalHours;
     }
 
-    // Display decimal time in hours and minutes, with round options
-    public static String timeToString(double time, boolean roundUp)
+    // Display decimal time in hours, minutes and second
+    static String timeToString(double time)
     {
         int hour = (int) time;
         time -= (double) hour;
         int minutes = (int) (time *= 60.0);
         time -= (double) minutes;
         int seconds = (int) (time *= 60.0);
-        if (roundUp && seconds > 29)
-            minutes++;
-        if (!roundUp && seconds > 5 && seconds < 30)
-            minutes++;
+        return String.format("%02d:%02d:%02d", hour, minutes, seconds);
+    }
+
+    // Display decimal time in hours and minutes, with round options
+    static String timeToString(double time, boolean roundUp)
+    {
+        int hour = (int) time;
+        time -= (double) hour;
+        int minutes = (int) (time *= 60.0);
+        time -= (double) minutes;
+        int seconds = (int) (time *= 60.0);
+
+        if (roundUp)
+        {
+            if (seconds > 5)
+                minutes++;
+        }
+        else
+        {
+            if (seconds > 29)
+                minutes++;
+        }
+
         if (minutes == 60)
         {
             hour++;
             minutes = 0;
         }
+
+        if (hour == 24)
+            hour = 0;
 
         return String.format("%02d:%02d", hour, minutes);
     }
