@@ -73,7 +73,7 @@ public class SunRiseAndSet
     }
 
     // Display decimal time in hours, minutes and second
-    private static String timeToString(double time)
+    public static String timeToString(double time)
     {
         if (time == 0)
             return "NaN";
@@ -87,7 +87,7 @@ public class SunRiseAndSet
     }
 
     // Display decimal time in hours and minutes, with round options
-    static String timeToString(double time, boolean roundUp)
+    public static String timeToString(double time, boolean roundUp)
     {
         int hour = (int) time;
         time -= (double) hour;
