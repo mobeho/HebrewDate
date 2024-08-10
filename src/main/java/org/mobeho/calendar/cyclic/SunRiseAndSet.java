@@ -142,7 +142,7 @@ public class SunRiseAndSet
     }
 
     // Display decimal time in hours, minutes and second
-    static String timeToString(double time)
+    public static String timeToString(double time)
     {
         int hour = (int) time;
         time -= (double) hour;
@@ -153,7 +153,7 @@ public class SunRiseAndSet
     }
 
     // Display decimal time in hours and minutes, with round options
-    static String timeToString(double time, boolean roundUp)
+    public static String timeToString(double time, boolean roundUp)
     {
         int hour = (int) time;
         time -= (double) hour;
